@@ -8,6 +8,8 @@ import { FooterComponent } from './Footer/footer/footer.component';
 import { HomeComponent } from './Body/Home/home/home.component';
 import { RegisterComponent } from './Body/Register/register/register.component';
 import { LoginComponent } from './Body/Login/login/login.component';
+import { ClickDirectiveDirective } from './Directives/click-directive.directive';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { LoginComponent } from './Body/Login/login/login.component';
     FooterComponent,
     HomeComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ClickDirectiveDirective
   ],
   imports: [
     BrowserModule,
