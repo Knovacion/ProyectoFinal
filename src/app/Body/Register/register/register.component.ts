@@ -11,5 +11,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
   }
-
+// formulario reactivo conectar con FIREBASE**
+// nombre
+//correo
+//IdUInico o token(?)
+//comuna, region
+//imagen (beta)
 }
