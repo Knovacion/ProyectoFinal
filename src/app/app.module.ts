@@ -14,6 +14,8 @@ import { ClickDirectiveDirective } from "./Directives/click-directive.directive"
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from "src/environments/environment";
+import { HeroesComponent } from './Body/Heroes/heroes/heroes.component';
+import { VillanosComponent } from './Body/Heroes/villanos/villanos.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { environment } from "src/environments/environment";
     RegisterComponent,
     LoginComponent,
     ClickDirectiveDirective,
+    HeroesComponent,
+    VillanosComponent,
   ],
   imports: [
     BrowserModule,
