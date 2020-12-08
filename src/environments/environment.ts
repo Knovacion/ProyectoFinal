@@ -25,6 +25,12 @@ export const environment = {
 }
 }
 
+export const endPoitns = {
+  tkn:'10224783760840780',
+  hero:'https://superheroapi.com/api/'
+  
+}
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

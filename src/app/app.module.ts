@@ -1,3 +1,5 @@
+//Module
+import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
@@ -21,6 +23,7 @@ import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatExpansionModule } from "@angular/material/expansion";
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +39,7 @@ import { MatExpansionModule } from "@angular/material/expansion";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     BrowserAnimationsModule,
