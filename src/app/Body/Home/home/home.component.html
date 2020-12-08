@@ -2,7 +2,7 @@
 
   <div class="container">
     <div class="container-fluid h-100">
-      <div class="row w-100 align-items-center">
+      <div class="row w-100 align-items-center" [ngClass]="{hiddenAcordeon: inicioSesionCorrecto}">
         <div class="col text-center">
 
           <mat-accordion class="example-headers-align">
@@ -15,9 +15,8 @@
                   <mat-icon>account_circle</mat-icon>
                 </mat-panel-description>
               </mat-expansion-panel-header>
-              <app-login></app-login>
+              <app-login (envioParametro)="reciboUid($event)"></app-login>
             </mat-expansion-panel>
-
             <mat-expansion-panel hideToggle>
               <mat-expansion-panel-header>
                 <mat-panel-title>
@@ -29,8 +28,6 @@
               </mat-expansion-panel-header>
               <app-register></app-register>
             </mat-expansion-panel>
-
-
           </mat-accordion>
         </div>
       </div>

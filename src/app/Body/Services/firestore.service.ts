@@ -19,4 +19,13 @@ export class FirestoreService {
       return err;
     }
   }
+
+  async UsuarioLogueado() {
+    try {
+      const currentUser = this.angularFireAuth.auth.currentUser;
+      return currentUser;
+    } catch (error) {
+      return error;
+    }
+  }
 }

@@ -23,8 +23,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {  MatExpansionModule } from "@angular/material/expansion";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from '@angular/material/card';
-
 import{ReactiveFormsModule} from '@angular/forms';
+
+//Toast
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 @NgModule({
   declarations: [
@@ -49,6 +53,7 @@ import{ReactiveFormsModule} from '@angular/forms';
     MatCardModule,
     CommonModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
