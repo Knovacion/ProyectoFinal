@@ -8,6 +8,7 @@ import {
 } from "@angular/router";
 import { Observable } from "rxjs";
 import { FirestoreService } from "../Body/Services/firestore.service";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +16,10 @@ import { FirestoreService } from "../Body/Services/firestore.service";
 export class LoginGuardGuard implements CanActivate {
   private usuarioLogueado: boolean;
   private router: Router;
-  constructor(private FirestoreService: FirestoreService) {}
+  constructor(
+    private FirestoreService: FirestoreService,
+    private toastr: ToastrService
+  ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -31,14 +35,16 @@ export class LoginGuardGuard implements CanActivate {
           return this.usuarioLogueado;
         } else {
           this.usuarioLogueado = false;
-          window.alert("protected route");
+          this.toastr.error(
+            "Debe iniciar sesión para poder ingresar.",
+            "Alerta"
+          );
           this.router.navigate(["home"]);
         }
       })
       .catch((error) => {
-        console.log("error promise guard ", error);
         this.usuarioLogueado = false;
-        window.alert("protected route");
+        this.toastr.error("Debe iniciar sesión para poder ingresar.", "Alerta");
         this.router.navigate(["home"]);
         return this.usuarioLogueado;
       });

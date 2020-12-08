@@ -59,7 +59,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     MatListModule,
     MatDividerModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({timeOut: 1000, preventDuplicates: true})
   ],
   providers: [],
   bootstrap: [AppComponent],

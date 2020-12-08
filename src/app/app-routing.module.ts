@@ -10,8 +10,8 @@ import { LoginGuardGuard } from "./Guards/login-guard.guard";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
-  { path: "heroes", component: HeroesComponent },
-  { path: "villanos", component: VillanosComponent },
+  { path: "heroes", component: HeroesComponent, canActivate: [LoginGuardGuard] },
+  { path: "villanos", component: VillanosComponent, canActivate: [LoginGuardGuard] },
 
   { path: "", redirectTo: "home", pathMatch: "full" },
 ];
