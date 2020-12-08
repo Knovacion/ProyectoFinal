@@ -4,14 +4,57 @@
   <mat-card class="hero-card">
       <mat-card-header>
         <mat-card-title>{{this.heroe.name}}</mat-card-title>
-        <mat-card-subtitle>{{this.heroe.biography["full-name"]}}</mat-card-subtitle>
+        <mat-card-subtitle>{{this.heroe.biography.fullname}}</mat-card-subtitle>
       </mat-card-header>
   
-    <img mat-card-image class="Avatar" style="align-items: center;" src="{{this.heroe.image['url']}}" alt="Photo of a Shiba Inu">
+    <img mat-card-image class="Avatar" style="align-items: center;" src="{{this.heroe.image.url}}" alt="Photo of a Shiba Inu">
     <mat-card-content>
       <mat-card-title ><strong> {{this.heroe.name}}</strong></mat-card-title>
-      <mat-card-subtitle><strong>Nombre: </strong>  {{this.heroe.biography["full-name"]}}</mat-card-subtitle>
-
+      <mat-card-subtitle><strong>Nombre: </strong>  {{this.heroe.biography.fullname}}</mat-card-subtitle>
+      <mat-card-subtitle>
+        <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Apariencia
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <mat-list-item role="listitem">Color Ojos: {{this.heroe.appearance.eyecolor}}</mat-list-item>
+            <mat-list-item role="listitem">Genero: {{this.heroe.appearance.gender}}</mat-list-item>
+            <mat-list-item role="listitem">Color Cabello: {{this.heroe.appearance.haircolor}}</mat-list-item>
+            <mat-list-item role="listitem">Estatura: {{this.heroe.appearance.height[1]}}</mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-subtitle>
+      <mat-card-subtitle> <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Biografia
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <mat-list-item role="listitem">Nombre {{this.heroe.biography.fullname}}</mat-list-item>
+        
+            <mat-list-item role="listitem">Alias
+            <mat-list-item role="listitem" *ngFor="let bio of this.heroe.biography.aliases">
+              <mat-list role="list" style="font-size: 12px;">{{bio}}</mat-list>
+            </mat-list-item>
+         
+          </mat-list-item>
+            <mat-list-item role="listitem">Alineacion: {{this.heroe.biography.alignment}}</mat-list-item>
+            <mat-list-item role="listitem">Alter-Egos: {{this.heroe.biography.alteregos}}</mat-list-item>
+            <mat-list-item role="listitem">Primera Aparicion: {{this.heroe.biography.firstappearance}}</mat-list-item>
+            <mat-list-item role="listitem">Nacimiento: {{this.heroe.biography.placeofbirth}}</mat-list-item>
+            <mat-list-item role="listitem">Publicación: {{this.heroe.biography.publisher}}</mat-list-item>
+          </mat-list>
+          
+        </mat-expansion-panel>
+      </mat-accordion></mat-card-subtitle>
+<!--       <mat-card-subtitle><strong>Nombre: </strong>  {{this.heroe.biography.fullname}}</mat-card-subtitle>
+      <mat-card-subtitle><strong>Nombre: </strong>  {{this.heroe.biography.fullname}}</mat-card-subtitle> -->
     </mat-card-content>
 <!--     <mat-card-actions>
       <button mat-button>LIKE</button>

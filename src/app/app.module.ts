@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import {CommonModule} from '@angular/common'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -23,8 +24,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {  MatExpansionModule } from "@angular/material/expansion";
 import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from '@angular/material/card';
-
+import {MatListModule} from '@angular/material/list';
 import{ReactiveFormsModule} from '@angular/forms';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,9 @@ import{ReactiveFormsModule} from '@angular/forms';
     MatCardModule,
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    MatListModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

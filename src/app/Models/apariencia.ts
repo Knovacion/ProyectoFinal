@@ -1,7 +1,7 @@
 export class Apariencia {
-"eye-color": string;
+"eyecolor": string;
 "gender": string;
-"hair-color": string;
+"haircolor": string;
 "height": number[];
 "race": string;
 "weight": number[]
