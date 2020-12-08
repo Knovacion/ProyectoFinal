@@ -1,5 +1,3 @@
-//Module
-import { HttpClientModule } from "@angular/common/http";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 
@@ -24,6 +22,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {  MatExpansionModule } from "@angular/material/expansion";
 import { MatIconModule } from "@angular/material/icon";
 
+import{ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,12 +39,12 @@ import { MatIconModule } from "@angular/material/icon";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MatExpansionModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
