@@ -14,8 +14,12 @@ import { ClickDirectiveDirective } from "./Directives/click-directive.directive"
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { environment } from "src/environments/environment";
-import { HeroesComponent } from './Body/Heroes/heroes/heroes.component';
-import { VillanosComponent } from './Body/Heroes/villanos/villanos.component';
+import { HeroesComponent } from "./Body/Heroes/heroes/heroes.component";
+import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
+
+//Material
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MatExpansionModule } from "@angular/material/expansion";
 
 @NgModule({
   declarations: [
@@ -34,6 +38,8 @@ import { VillanosComponent } from './Body/Heroes/villanos/villanos.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
