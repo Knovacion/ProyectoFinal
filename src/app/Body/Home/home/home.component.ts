@@ -8,5 +8,21 @@ import { Component, OnInit } from "@angular/core";
 export class HomeComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  public inicioSesionCorrecto: boolean = false;
+  public uid: string ;
+  ngOnInit() {
+    console.log("uid", this.uid);
+    this.uid = localStorage.getItem("uid");
+    if (this.uid != undefined) {
+      this.inicioSesionCorrecto = true;
+    } 
+  }
+
+  reciboUid(uidParam: string) {
+    this.uid = uidParam;
+    if (this.uid != undefined) {
+      this.inicioSesionCorrecto = true;
+      localStorage.setItem("uid", this.uid);
+    }
+  }
 }

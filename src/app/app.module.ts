@@ -28,6 +28,11 @@ import {MatListModule} from '@angular/material/list';
 import{ReactiveFormsModule} from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider';
 
+//Toastgit 
+import { ToastrModule } from 'ngx-toastr';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +59,7 @@ import {MatDividerModule} from '@angular/material/divider';
     HttpClientModule,
     MatListModule,
     MatDividerModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
