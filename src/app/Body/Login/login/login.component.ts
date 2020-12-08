@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { FirestoreService } from "../../Services/firestore.service";
 
 @Component({
@@ -8,11 +8,24 @@ import { FirestoreService } from "../../Services/firestore.service";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
+  get correo() {
+    return this.loginForm.get("txtCorreo");
+  }
+
+  get pass() {
+    return this.loginForm.get("txtPass");
+  }
+
   public loginForm = new FormGroup({
-    txtCorreo: new FormControl(""),
-    txtPass: new FormControl(""),
+    txtCorreo: new FormControl("", [Validators.required, Validators.email]),
+    txtPass: new FormControl("", [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
-  constructor(private firestoreService: FirestoreService) {}
+  constructor(
+    private firestoreService: FirestoreService
+  ) {}
 
   ngOnInit() {}
 
@@ -25,7 +38,22 @@ export class LoginComponent implements OnInit {
         this.loginForm.value.txtPass
       )
       .then((resp) => {
+        console.log(resp.code);
         console.log(resp);
+
+        if (resp.code == "undefined") {
+          alert("Inicio de sesion correcto !!!!!!");
+        } else {
+          if (resp.code == "auth/wrong-password") {
+            alert("Usuario y/o contraseña incorrecta.");
+          } else if (resp.code == "auth/user-not-found") {
+            alert("Usuario no registrado");
+          } else if (resp.code == "auth/too-many-requests") {
+            alert(
+              "Se ha bloqueado el usuario temporalmente, vuelva a intentarlo dentro de un minuto."
+            );
+          }
+        }
       })
       .catch((resp) => {
         console.error(resp);
