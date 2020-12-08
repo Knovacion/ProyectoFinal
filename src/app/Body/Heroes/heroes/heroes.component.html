@@ -1,1 +1,21 @@
-<p>heroes works!</p>
+
+<div class="container">
+  <div class="col-md-3"></div>
+  <mat-card class="hero-card">
+      <mat-card-header>
+        <mat-card-title>{{this.heroe.name}}</mat-card-title>
+        <mat-card-subtitle>{{this.heroe.biography["full-name"]}}</mat-card-subtitle>
+      </mat-card-header>
+  
+    <img mat-card-image class="Avatar" style="align-items: center;" src="{{this.heroe.image.url}}" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <mat-card-title ><strong> {{this.heroe.name}}</strong></mat-card-title>
+      <mat-card-subtitle><strong>Nombre: </strong>  {{this.heroe.biography["full-name"]}}</mat-card-subtitle>
+
+    </mat-card-content>
+<!--     <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions> -->
+  </mat-card>
+</div>

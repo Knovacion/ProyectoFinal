@@ -1,0 +1,18 @@
+.hero-card {
+  max-width: 400px;
+}
+
+.Hero-header-image {
+ 
+  background-size: cover;
+}
+.Avatar {
+  /*tamaño de tu círculo */
+  height: 200px;
+  width: 200px;
+  /*valores son independientes del tamaño del círculo */
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  background-size: 100% auto;
+  align-items: center;
+}
