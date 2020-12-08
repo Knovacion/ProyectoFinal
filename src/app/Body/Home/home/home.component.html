@@ -4,22 +4,34 @@
     <div class="container-fluid h-100">
       <div class="row w-100 align-items-center">
         <div class="col text-center">
-          <mat-expansion-panel hideToggle >
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Iniciar Sesión
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-login></app-login>
-          </mat-expansion-panel>
-          <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Registrarse
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-register></app-register>
-          </mat-expansion-panel>
+
+          <mat-accordion class="example-headers-align">
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Inicio Sesión
+                </mat-panel-title>
+                <mat-panel-description>
+                  <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <app-login></app-login>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Registro
+                </mat-panel-title>
+                <mat-panel-description>
+                  <mat-icon>person_add</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <app-register></app-register>
+            </mat-expansion-panel>
+
+
+          </mat-accordion>
         </div>
       </div>
       <div id="carouselHeroes" class="carousel slide carousel-fade back" data-ride="carousel">
