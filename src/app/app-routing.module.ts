@@ -4,14 +4,21 @@ import { HeroesComponent } from "./Body/Heroes/heroes/heroes.component";
 import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
 import { HomeComponent } from "./Body/Home/home/home.component";
 
-
 // GUARD
 import { LoginGuardGuard } from "./Guards/login-guard.guard";
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
-  { path: "heroes", component: HeroesComponent, canActivate: [LoginGuardGuard] },
-  { path: "villanos", component: VillanosComponent, canActivate: [LoginGuardGuard] },
+  {
+    path: "heroes",
+    component: HeroesComponent,
+    canActivate: [LoginGuardGuard],
+  },
+  {
+    path: "villanos",
+    component: VillanosComponent,
+    canActivate: [LoginGuardGuard],
+  },
 
   { path: "", redirectTo: "home", pathMatch: "full" },
 ];

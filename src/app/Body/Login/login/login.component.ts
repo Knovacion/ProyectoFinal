@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         this.loginForm.value.txtPass
       )
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
 
         if (
           resp.code == "undefined" ||
@@ -71,6 +71,8 @@ export class LoginComponent implements OnInit {
         console.error(resp);
       });
   }
+
+ 
 
   //codigo formulario Reactivo
 }

@@ -28,4 +28,13 @@ export class FirestoreService {
       return error;
     }
   }
+
+  async CerrarSesion() {
+    try {
+      const respuesta = await this.angularFireAuth.auth.signOut();
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
 }

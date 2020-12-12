@@ -1,4 +1,8 @@
-.izq
-{
-    padding-left: 1000px;
+.izq {
+  padding-left: 1000px;
+}
+
+.hiddenBtnCerrarSesion{
+
+  display:none;
 }
