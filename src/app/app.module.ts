@@ -30,6 +30,7 @@ import {MatDividerModule} from '@angular/material/divider';
 
 //Toastgit 
 import { ToastrModule } from 'ngx-toastr';
+import { MouseDirectiveDirective } from './Directives/mouse-directive.directive';
 
 
 
@@ -44,6 +45,7 @@ import { ToastrModule } from 'ngx-toastr';
     ClickDirectiveDirective,
     HeroesComponent,
     VillanosComponent,
+    MouseDirectiveDirective
   ],
   imports: [
     BrowserModule,

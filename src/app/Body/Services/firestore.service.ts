@@ -22,7 +22,7 @@ export class FirestoreService {
 
   async UsuarioLogueado() {
     try {
-      const currentUser = this.angularFireAuth.auth.currentUser;
+      const currentUser = await this.angularFireAuth.auth.currentUser;
       return currentUser;
     } catch (error) {
       return error;
@@ -32,6 +32,7 @@ export class FirestoreService {
   async CerrarSesion() {
     try {
       const respuesta = await this.angularFireAuth.auth.signOut();
+      
       return true;
     } catch (error) {
       return false;
