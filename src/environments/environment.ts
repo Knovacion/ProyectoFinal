@@ -25,10 +25,10 @@ export const environment = {
 }
 }
 
-export const endPoitns = {
+export const endPoints = {
   tkn:'10224783760840780',
-  hero:'https://superheroapi.com/api/'
-  
+  hero:'https://superheroapi.com/api/',
+  heroId:'https://www.superheroapi.com/api.php/'
 }
 
 /*

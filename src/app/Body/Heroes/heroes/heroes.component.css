@@ -1,6 +1,6 @@
 
 .Hero-header-image {
- 
+
   background-size: cover;
 }
 .Avatar {
@@ -12,4 +12,8 @@
   border-radius: 50%;
   background-size: 100% auto;
   align-items: center;
+}
+.SearchBarSize
+{
+  height: 50px;
 }

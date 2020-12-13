@@ -1,12 +1,14 @@
 
-  <div clas="col-md-12">
-    <form [formGroup]="SearchForm" (ngSubmit)="searchByName()">
-      <div class="col-md-9 form-group bg-dark">
-        <input type="text" class="form-control" formControlName="txtSearch" >
-        <button type="submit"  class="btn btn-dark col-md-3 " id="btnIniciarSesion"></button>
+    <form [formGroup]="SearchForm"  (ngSubmit)="searchByName()">
+      <div class="col-md-12 form-group bg-dark SearchBarSize">
+        <div class="input-group">
+        <input type="text" class="form-control col-md-9" formControlName="txtSearch" placeholder="Ingresa el nombre de tu heroe" >
+        &nbsp; &nbsp; &nbsp;
+        <span class="input-group-btn">
+        <button type="submit"  class="btn btn-light btn-md-3">Buscar</button>
+      </span>
       </div>
-    </form>
-  </div>
+      </div>
 
 
       

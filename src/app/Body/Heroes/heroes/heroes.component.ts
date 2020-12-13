@@ -14,6 +14,7 @@ export class HeroesComponent implements OnInit {
  
   public heroe: Heroe = new Heroe;
   public heroes: Heroe[] = [];
+  public allHeroes:Heroe[] = []; 
   public panelOpenState = false;
   public contenedor:any = Object;
   public spliter = [];
@@ -25,7 +26,7 @@ export class HeroesComponent implements OnInit {
 
 
   ngOnInit() {
- 
+     this.getAllHeroes();
   }
 
 
@@ -34,6 +35,24 @@ export class HeroesComponent implements OnInit {
     receptor = slp.split(",");
     this.spliter = receptor;   
     return this.spliter;
+  }
+  getAllHeroes()
+  {
+    let total:number = 731;
+    try {
+      for (let i = 0; i < total; i++) {
+       this.heroApi.getCharactersById(i).subscribe(res=> 
+        {
+          if(res.biography.alignment.toLowerCase() == "good")
+          {
+            this.allHeroes.push(res)
+          }
+        })
+      }
+      console.log("Heroes",this.allHeroes);
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
   processHeroArray(heroArr: Heroe[]){
