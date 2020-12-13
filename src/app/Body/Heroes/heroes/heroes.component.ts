@@ -29,6 +29,9 @@ export class HeroesComponent implements OnInit {
      this.getAllHeroes();
   }
 
+  onKey(event: any) { // without type info
+    this.searchByName()
+  }
 
   splitterFunction(slp:string){
     let receptor = []
@@ -56,7 +59,7 @@ export class HeroesComponent implements OnInit {
   }
 
   processHeroArray(heroArr: Heroe[]){
-
+   
     for (let i = 0; i < heroArr.length; i++) {
       const ele = heroArr[i];
       this.heroe = new Heroe;
@@ -116,10 +119,12 @@ export class HeroesComponent implements OnInit {
       re= res.results;
       if(re.length > 1)
       {
+        this.heroes =[];
         this.processHeroArray(re);
       }
       else if(re.length=1)
       {
+        this.heroes =[];
         this.processHeroArray(re);
       }
     });
