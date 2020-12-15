@@ -15,6 +15,7 @@ export class HeroesComponent implements OnInit {
   public heroe: Heroe = new Heroe;
   public heroes: Heroe[] = [];
   public allHeroes:Heroe[] = []; 
+  public allVillans:Heroe[] = []; 
   public panelOpenState = false;
   public contenedor:any = Object;
   public spliter = [];
@@ -26,7 +27,9 @@ export class HeroesComponent implements OnInit {
 
 
   ngOnInit() {
-     this.getAllHeroes();
+    
+    /**Mejorar metodo tal vez un lazy load */
+    //this.getAllHeroes();
   }
 
   onKey(event: any) { // without type info
@@ -41,18 +44,32 @@ export class HeroesComponent implements OnInit {
   }
   getAllHeroes()
   {
-    let total:number = 731;
+    let total:number =300;
+    let flag: boolean = false;
+    let contador:number=0;
     try {
-      for (let i = 0; i < total; i++) {
-       this.heroApi.getCharactersById(i).subscribe(res=> 
-        {
-          if(res.biography.alignment.toLowerCase() == "good")
+      for (let i = 0; i <= total; i++) {
+        if(flag == false){
+          this.heroApi.getCharactersById(i).subscribe(res=> 
+            {
+            if(res.biography.alignment.toLowerCase() == "good")
+            {
+                this.allHeroes.push(res)
+            }
+            else{
+                this.allVillans.push(res)
+            }
+            })
+        contador++;
+          if(contador ==total)
           {
-            this.allHeroes.push(res)
+            flag = true;
           }
-        })
+        }
+        //  return this.allHeroes
       }
       console.log("Heroes",this.allHeroes);
+      console.log("Villans",this.allVillans);
     } catch (error) {
       console.log("error", error);
     }
