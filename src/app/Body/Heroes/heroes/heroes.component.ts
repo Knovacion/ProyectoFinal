@@ -28,8 +28,7 @@ export class HeroesComponent implements OnInit {
 
   ngOnInit() {
     
-    /**Mejorar metodo tal vez un lazy load */
-    //this.getAllHeroes();
+    this.getAllCharacters();
   }
 
   onKey(event: any) { // without type info
@@ -42,37 +41,23 @@ export class HeroesComponent implements OnInit {
     this.spliter = receptor;   
     return this.spliter;
   }
-  getAllHeroes()
+
+  getAllCharacters()
   {
-    let total:number =300;
-    let flag: boolean = false;
-    let contador:number=0;
-    try {
-      for (let i = 0; i <= total; i++) {
-        if(flag == false){
-          this.heroApi.getCharactersById(i).subscribe(res=> 
-            {
-            if(res.biography.alignment.toLowerCase() == "good")
-            {
-                this.allHeroes.push(res)
-            }
-            else{
-                this.allVillans.push(res)
-            }
-            })
-        contador++;
-          if(contador ==total)
-          {
-            flag = true;
-          }
-        }
-        //  return this.allHeroes
+    this.heroApi.getAll().subscribe( res=>{
+      res.forEach(ele => {
+        if(ele.biography.alignment.toLowerCase() =="good")
+        {
+          this.allHeroes.push(ele)
       }
-      console.log("Heroes",this.allHeroes);
-      console.log("Villans",this.allVillans);
-    } catch (error) {
-      console.log("error", error);
-    }
+      else{
+          this.allVillans.push(ele)
+      }
+        
+      });
+    })
+    console.log("Heroes",this.allHeroes);
+    console.log("Villanos",this.allVillans);    
   }
 
   processHeroArray(heroArr: Heroe[]){
