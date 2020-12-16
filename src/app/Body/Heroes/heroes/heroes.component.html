@@ -1,5 +1,6 @@
 
-    <form [formGroup]="SearchForm"  (ngSubmit)="searchByName()">
+   
+   <form [formGroup]="SearchForm" class="bg-dark" (ngSubmit)="searchByName()">
       <div class="col-md-12 form-group bg-dark SearchBarSize">
         <div class="input-group">
         <input type="text" class="form-control col-md-9" formControlName="txtSearch" placeholder="Ingresa el nombre de tu heroe"(keyup.enter)="onKey($event.target.value)" >
@@ -13,138 +14,141 @@
 
       
 <mat-accordion >
-  <mat-expansion-panel *ngFor="let pj of this.heroes, index as i" hideToggle>
-    <mat-expansion-panel-header>
+  <mat-expansion-panel *ngFor="let pj of this.heroes" hideToggle>
+    <mat-expansion-panel-header appMouseDirective>
       <mat-panel-title>
-          <p>{{pj.name}}</p>
+        <img class="ClassImagenRadio" src="{{pj.image}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}</p>
       </mat-panel-title>
+      <mat-panel-description style="text-align:left" appMouseDirective>
+        {{pj.biography.fullname}}
+      </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-card style="align-items: center;">
       <mat-card-header>
-        <img mat-card-image class="Avatar"src="{{pj.image}}" alt="Photo {{pj.name}}">
-      </mat-card-header>
-      <mat-card-content >
-        <mat-card class="hero-card bg-dark">
-        <mat-card-content>
-          <mat-card-title ><strong> {{pj.name}}</strong></mat-card-title>
-          <mat-card-subtitle><strong>Nombre: </strong>  {{pj.biography.fullname}}</mat-card-subtitle>
+        <img mat-card-image class="Avatar" src="{{pj.image}}" alt="Photo {{pj.name}}">
+        <mat-card-content class="cardLeft" >
+          <mat-card class="hero-card bg-dark ">
+          <mat-card-content>
+            <mat-card-title ><strong> {{pj.name}}</strong></mat-card-title>
+            <mat-card-subtitle><strong>Nombre: </strong>  {{pj.biography.fullname}}</mat-card-subtitle>
+            <mat-card-subtitle>
+              <mat-accordion>
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Apariencia
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list role="list">
+                  <mat-list-item role="listitem">Color Ojos: {{this.heroe.appearance.eyecolor}}</mat-list-item>
+                  <mat-list-item role="listitem">Genero: {{this.heroe.appearance.gender}}</mat-list-item>
+                  <mat-list-item role="listitem">Color Cabello: {{this.heroe.appearance.haircolor}}</mat-list-item>
+                  <mat-list-item role="listitem">Estatura: {{this.heroe.appearance.height[1]}}</mat-list-item>
+                </mat-list>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-card-subtitle>
+            <mat-card-subtitle> 
+              <mat-accordion>
+              <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Biografia
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list role="list">
+                  <mat-list-item role="listitem">Nombre {{this.heroe.biography.fullname}} 
+                </mat-list-item>
+              </mat-list> 
+              <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Alias
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>       
+                  <mat-list-item role="listitem" *ngFor="let bio of  pj.biography.aliases">
+                    <mat-list role="list" style="font-size: 12px;">{{bio}}</mat-list>
+                  </mat-list-item>  
+                </mat-expansion-panel>
+                </mat-accordion>
+      
+                <mat-list role="list">
+                  <mat-list-item role="listitem">Alineacion:  {{ this.heroe.biography.alignment }}</mat-list-item>
+                  <mat-list-item role="listitem">Alter-Egos:  {{ this.heroe.biography.alteregos }}</mat-list-item>
+                  <mat-list-item role="listitem">Primera Aparicion: {{this.heroe.biography.firstappearance }}</mat-list-item>
+                  <mat-list-item role="listitem">Nacimiento:  {{this.heroe.biography.placeofbirth}}</mat-list-item>
+                  <mat-list-item role="listitem">Publicación: {{this.heroe.biography.publisher}}</mat-list-item>
+                </mat-list> 
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-card-subtitle>
           <mat-card-subtitle>
             <mat-accordion>
             <mat-expansion-panel hideToggle>
               <mat-expansion-panel-header>
                 <mat-panel-title>
-                  Apariencia
+                  Conexiones
                 </mat-panel-title>
+                <br>
               </mat-expansion-panel-header>
-              <mat-list role="list">
-                <mat-list-item role="listitem">Color Ojos: {{this.heroe.appearance.eyecolor}}</mat-list-item>
-                <mat-list-item role="listitem">Genero: {{this.heroe.appearance.gender}}</mat-list-item>
-                <mat-list-item role="listitem">Color Cabello: {{this.heroe.appearance.haircolor}}</mat-list-item>
-                <mat-list-item role="listitem">Estatura: {{this.heroe.appearance.height[1]}}</mat-list-item>
-              </mat-list>
-            </mat-expansion-panel>
-          </mat-accordion>
-        </mat-card-subtitle>
-          <mat-card-subtitle> 
-            <mat-accordion>
-            <mat-expansion-panel hideToggle>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Biografia
-                </mat-panel-title>
-              </mat-expansion-panel-header>
-              <mat-list role="list">
-                <mat-list-item role="listitem">Nombre {{this.heroe.biography.fullname}} 
-              </mat-list-item>
-            </mat-list> 
-            <mat-accordion>
-              <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Alias
-                  </mat-panel-title>
-                </mat-expansion-panel-header>       
-                <mat-list-item role="listitem" *ngFor="let bio of  pj.biography.aliases">
-                  <mat-list role="list" style="font-size: 12px;">{{bio}}</mat-list>
-                </mat-list-item>  
-              </mat-expansion-panel>
+              <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Afiliaciones
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>       
+                    <mat-list-item role="listitem" *ngFor="let afil of this.heroe.connections.groupaffiliation">
+                      <mat-list role="list" style="font-size: 12px;">{{afil}}</mat-list>
+                    </mat-list-item>  
+                </mat-expansion-panel>
+                <br>
               </mat-accordion>
-    
               <mat-list role="list">
-                <mat-list-item role="listitem">Alineacion:  {{ this.heroe.biography.alignment }}</mat-list-item>
-                <mat-list-item role="listitem">Alter-Egos:  {{ this.heroe.biography.alteregos }}</mat-list-item>
-                <mat-list-item role="listitem">Primera Aparicion: {{this.heroe.biography.firstappearance }}</mat-list-item>
-                <mat-list-item role="listitem">Nacimiento:  {{this.heroe.biography.placeofbirth}}</mat-list-item>
-                <mat-list-item role="listitem">Publicación: {{this.heroe.biography.publisher}}</mat-list-item>
-              </mat-list> 
+                <mat-list-item role="listitem">Parientes:  {{ this.heroe.connections.relatives }}</mat-list-item>
+              </mat-list>   
             </mat-expansion-panel>
           </mat-accordion>
-        </mat-card-subtitle>
+        </mat-card-subtitle>  
         <mat-card-subtitle>
           <mat-accordion>
           <mat-expansion-panel hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Conexiones
+                Estadisticas de Poder
               </mat-panel-title>
-              <br>
             </mat-expansion-panel-header>
-            <mat-accordion>
-              <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Afiliaciones
-                  </mat-panel-title>
-                </mat-expansion-panel-header>       
-                  <mat-list-item role="listitem" *ngFor="let afil of this.heroe.connections.groupaffiliation">
-                    <mat-list role="list" style="font-size: 12px;">{{afil}}</mat-list>
-                  </mat-list-item>  
-              </mat-expansion-panel>
-              <br>
-            </mat-accordion>
             <mat-list role="list">
-              <mat-list-item role="listitem">Parientes:  {{ this.heroe.connections.relatives }}</mat-list-item>
-            </mat-list>   
+              <mat-list-item role="listitem">Combate: {{ this.heroe.powerstats.combat}}</mat-list-item>
+              <mat-list-item role="listitem">Resistencia: {{ this.heroe.powerstats.durability  }}</mat-list-item>
+              <mat-list-item role="listitem">Inteligencia: {{ this.heroe.powerstats.intelligence}}</mat-list-item>
+              <mat-list-item role="listitem">Poder: {{ this.heroe.powerstats.power}}</mat-list-item>
+              <mat-list-item role="listitem">Velocidad: {{ this.heroe.powerstats.speed}}</mat-list-item>
+              <mat-list-item role="listitem">Fuerza: {{ this.heroe.powerstats.strength}}</mat-list-item>
+            </mat-list>
           </mat-expansion-panel>
         </mat-accordion>
-      </mat-card-subtitle>  
+      </mat-card-subtitle>
       <mat-card-subtitle>
         <mat-accordion>
         <mat-expansion-panel hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Estadisticas de Poder
+              Trabajo
             </mat-panel-title>
           </mat-expansion-panel-header>
           <mat-list role="list">
-            <mat-list-item role="listitem">Combate: {{ this.heroe.powerstats.combat}}</mat-list-item>
-            <mat-list-item role="listitem">Resistencia: {{ this.heroe.powerstats.durability  }}</mat-list-item>
-            <mat-list-item role="listitem">Inteligencia: {{ this.heroe.powerstats.intelligence}}</mat-list-item>
-            <mat-list-item role="listitem">Poder: {{ this.heroe.powerstats.power}}</mat-list-item>
-            <mat-list-item role="listitem">Velocidad: {{ this.heroe.powerstats.speed}}</mat-list-item>
-            <mat-list-item role="listitem">Fuerza: {{ this.heroe.powerstats.strength}}</mat-list-item>
+            <mat-list-item role="listitem">Ubicación: {{ this.heroe.work.base}}</mat-list-item>
+            <mat-list-item role="listitem">Ocupación: {{ this.heroe.work.occupation  }}</mat-list-item>
           </mat-list>
         </mat-expansion-panel>
       </mat-accordion>
-    </mat-card-subtitle>
-    <mat-card-subtitle>
-      <mat-accordion>
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Trabajo
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-list role="list">
-          <mat-list-item role="listitem">Ubicación: {{ this.heroe.work.base}}</mat-list-item>
-          <mat-list-item role="listitem">Ocupación: {{ this.heroe.work.occupation  }}</mat-list-item>
-        </mat-list>
-      </mat-expansion-panel>
-    </mat-accordion>
-    </mat-card-subtitle>
-     </mat-card-content>
-    </mat-card>
-      </mat-card-content>
+      </mat-card-subtitle>
+       </mat-card-content>
+      </mat-card>
+        </mat-card-content>
+      </mat-card-header>
     </mat-card>
   </mat-expansion-panel>
 </mat-accordion>

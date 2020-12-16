@@ -1,0 +1,20 @@
+
+<mat-divider></mat-divider>
+<mat-form-field  class="col-md-6 bg-dark">
+  <mat-label>Elige a tu Heroe</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let hero of this.allHeroes" [value]="hero.id">
+      {{hero.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field  class="col-md-6 bg-dark">
+  <mat-label>Elige a tu Villano</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let hero of this.allVillans" [value]="hero.id">
+      {{hero.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+

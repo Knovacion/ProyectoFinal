@@ -13,6 +13,7 @@ import { LoginComponent } from "./Body/Login/login/login.component";
 import { ClickDirectiveDirective } from "./Directives/click-directive.directive";
 import { HeroesComponent } from "./Body/Heroes/heroes/heroes.component";
 import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
+import { VersusComponent } from './Body/Versus/versus.component';
 
 // FIREBASE
 import { AngularFireModule } from "@angular/fire";
@@ -29,10 +30,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 //Toastgit 
 import { ToastrModule } from 'ngx-toastr';
+
+//Directivas
 import { MouseDirectiveDirective } from './Directives/mouse-directive.directive';
+
 
 
 
@@ -47,7 +52,8 @@ import { MouseDirectiveDirective } from './Directives/mouse-directive.directive'
     ClickDirectiveDirective,
     HeroesComponent,
     VillanosComponent,
-    MouseDirectiveDirective
+    MouseDirectiveDirective,
+    VersusComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +71,8 @@ import { MouseDirectiveDirective } from './Directives/mouse-directive.directive'
     MatDividerModule,
     ToastrModule.forRoot({timeOut: 1000, preventDuplicates: true}),
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],

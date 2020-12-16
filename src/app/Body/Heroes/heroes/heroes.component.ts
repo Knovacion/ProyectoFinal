@@ -12,10 +12,9 @@ import { HeroesService } from "../../Services/heroes.service";
 export class HeroesComponent implements OnInit {
   constructor(public heroApi: HeroesService) {}
  
+  public data:any;
   public heroe: Heroe = new Heroe;
   public heroes: Heroe[] = [];
-  public allHeroes:Heroe[] = []; 
-  public allVillans:Heroe[] = []; 
   public panelOpenState = false;
   public contenedor:any = Object;
   public spliter = [];
@@ -25,10 +24,7 @@ export class HeroesComponent implements OnInit {
     txtSearch: new FormControl("", ),
   });
 
-
-  ngOnInit() {
-    
-    this.getAllCharacters();
+  ngOnInit() {  
   }
 
   onKey(event: any) { // without type info
@@ -40,24 +36,6 @@ export class HeroesComponent implements OnInit {
     receptor = slp.split(",");
     this.spliter = receptor;   
     return this.spliter;
-  }
-
-  getAllCharacters()
-  {
-    this.heroApi.getAll().subscribe( res=>{
-      res.forEach(ele => {
-        if(ele.biography.alignment.toLowerCase() =="good")
-        {
-          this.allHeroes.push(ele)
-      }
-      else{
-          this.allVillans.push(ele)
-      }
-        
-      });
-    })
-    console.log("Heroes",this.allHeroes);
-    console.log("Villanos",this.allVillans);    
   }
 
   processHeroArray(heroArr: Heroe[]){
@@ -109,6 +87,18 @@ export class HeroesComponent implements OnInit {
      this.getHeroByName(this.SearchForm.value.txtSearch)
 
    }
+
+ /*  getBestHero()
+  {
+    this.heroApi.getCharactersById2("batman").subscribe(res=>
+      {
+   
+        this.data = res.results;
+        console.log("----------")
+        console.log(this.data)
+        console.log("----------")
+      })
+  } */
 
   getHeroByName(hero:string) {
 
