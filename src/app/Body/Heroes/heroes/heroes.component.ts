@@ -16,7 +16,7 @@ export class HeroesComponent implements OnInit {
   public heroe: Heroe = new Heroe;
   public heroes: Heroe[] = [];
   public panelOpenState = false;
-  public contenedor:any = Object;
+  public contenedor:any = "";
   public spliter = [];
 
 
@@ -43,6 +43,7 @@ export class HeroesComponent implements OnInit {
     for (let i = 0; i < heroArr.length; i++) {
       const ele = heroArr[i];
       this.heroe = new Heroe;
+      this.contenedor = ""
       this.heroe.id = ele.id;        
       this.heroe.image = ele.image["url"];
       this.heroe.name= ele.name;

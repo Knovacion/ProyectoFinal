@@ -2,7 +2,7 @@
 <mat-divider></mat-divider>
 <mat-form-field  class="col-md-6 bg-dark">
   <mat-label>Elige a tu Heroe</mat-label>
-  <mat-select>
+  <mat-select (selectionChange)="heroeSelect($event.value)">
     <mat-option *ngFor="let hero of this.allHeroes" [value]="hero.id">
       {{hero.name}}
     </mat-option>
@@ -10,11 +10,162 @@
 </mat-form-field>
 <mat-form-field  class="col-md-6 bg-dark">
   <mat-label>Elige a tu Villano</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let hero of this.allVillans" [value]="hero.id">
-      {{hero.name}}
+  <mat-select (selectionChange)="villanSelect($event.value)">
+    <mat-option *ngFor="let villan of this.allVillans" [value]="villan.id">
+      {{villan.name}}
     </mat-option>
   </mat-select>
 </mat-form-field>
+<mat-card  *ngIf="this.flag == true"  class="col-md-6 bySide">
+  <mat-card-header>
+    <img mat-card-image class="Avatar col-md-6" src="{{this.heroe.image}}" alt="Photo {this.heroe.name}}">
+    <mat-card-content class=" col-md-6" >
+      <mat-card class="hero-card bg-dark ">
+      <mat-card-content>
+        <mat-card-title ><strong> {{this.heroe.name}}</strong></mat-card-title>
+        <mat-card-subtitle><strong>Nombre: </strong>  {{this.heroe.biography.fullname}}</mat-card-subtitle>
+        <mat-list role="list">
+          <mat-list-item role="listitem">Combate: {{ this.heroe.powerstats.combat}} &nbsp;&nbsp;
+            <div class="ec-stars-wrapper">
+              <a data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+              <a data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+              <a data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+              <a data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+              <a data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+            </div>
+            </mat-list-item>
+          <br>
+          <mat-list-item role="listitem">Resistencia: {{ this.heroe.powerstats.durability  }}&nbsp;&nbsp;
+          <div class="ec-stars-wrapper">   
+            <a data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+            <a data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+            <a data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+            <a data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+            <a data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+          </div>
+          </mat-list-item>
+          <br>
+          <mat-list-item role="listitem">Inteligencia: {{ this.heroe.powerstats.intelligence}}&nbsp;&nbsp;
+            <div class="ec-stars-wrapper">
+            <a data-value="1">&#9733;</a>
+            <a data-value="2">&#9733;</a>
+            <a data-value="3">&#9733;</a>
+            <a data-value="4">&#9733;</a>
+            <a data-value="5">&#9733;</a>
+          </div>
+        </mat-list-item>
+          <br>
+          <mat-list-item role="listitem">Poder: {{ this.heroe.powerstats.power}}&nbsp;&nbsp;
+            <div class="ec-stars-wrapper">
+            <a data-value="1">&#9733;</a>
+            <a data-value="2">&#9733;</a>
+            <a data-value="3">&#9733;</a>
+            <a data-value="4">&#9733;</a>
+            <a data-value="5">&#9733;</a>
+          </div>
+          </mat-list-item>
+          <br>
+          <mat-list-item role="listitem">Velocidad: {{ this.heroe.powerstats.speed}}&nbsp;&nbsp;  
+              <div class="ec-stars-wrapper">
+              <a data-value="1">&#9733;</a>
+              <a data-value="2">&#9733;</a>
+              <a data-value="3">&#9733;</a>
+              <a data-value="4">&#9733;</a>
+              <a data-value="5">&#9733;</a>
+            </div>
+            </mat-list-item>
+          <br>
+          <mat-list-item role="listitem">Fuerza: {{ this.heroe.powerstats.strength}}&nbsp;&nbsp;  
+              <div class="ec-stars-wrapper">
+              <a data-value="1">&#9733;</a>
+              <a data-value="2">&#9733;</a>
+              <a data-value="3">&#9733;</a>
+              <a data-value="4">&#9733;</a>
+              <a data-value="5">&#9733;</a>
+            </div>
+            </mat-list-item>
+            <mat-list-item><strong>Total:</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{this.poderTotalH}}</mat-list-item>
+        </mat-list>
+   </mat-card-content>
+  </mat-card>
+    </mat-card-content>
+  </mat-card-header>
+</mat-card>
+<mat-card  *ngIf="this.flag2 == true" class="col-md-6 bySide" >
+    <mat-card-header>
+      <img mat-card-image class="Avatar col-md-6" src="{{this.villan.image}}" alt="Photo {this.villan.name}}">
+      <mat-card-content class=" col-md-6" >
+        <mat-card class="hero-card bg-dark ">
+        <mat-card-content>
+          <mat-card-title ><strong> {{this.villan.name}}</strong></mat-card-title>
+          <mat-card-subtitle><strong>Nombre: </strong>  {{this.villan.biography.fullname}}</mat-card-subtitle>
+          <mat-list role="list">
+            <mat-list-item role="listitem">Combate: {{ this.villan.powerstats.combat}} &nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+                <a data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                <a data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                <a data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                <a data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                <a data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+              </div>
+              </mat-list-item>
+            <br>
+            <mat-list-item role="listitem">Resistencia: {{ this.villan.powerstats.durability  }}&nbsp;&nbsp;
+            <div class="ec-stars-wrapper">   
+              <a data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+              <a data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+              <a data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+              <a data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+              <a data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+            </div>
+            </mat-list-item>
+            <br>
+            <mat-list-item role="listitem">Inteligencia: {{ this.villan.powerstats.intelligence}}&nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+              <a data-value="1">&#9733;</a>
+              <a data-value="2">&#9733;</a>
+              <a data-value="3">&#9733;</a>
+              <a data-value="4">&#9733;</a>
+              <a data-value="5">&#9733;</a>
+            </div>
+          </mat-list-item>
+            <br>
+            <mat-list-item role="listitem">Poder: {{ this.villan.powerstats.power}}&nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+              <a data-value="1">&#9733;</a>
+              <a data-value="2">&#9733;</a>
+              <a data-value="3">&#9733;</a>
+              <a data-value="4">&#9733;</a>
+              <a data-value="5">&#9733;</a>
+            </div>
+            </mat-list-item>
+            <br>
+            <mat-list-item role="listitem">Velocidad: {{ this.villan.powerstats.speed}}&nbsp;&nbsp;  
+                <div class="ec-stars-wrapper">
+                <a data-value="1">&#9733;</a>
+                <a data-value="2">&#9733;</a>
+                <a data-value="3">&#9733;</a>
+                <a data-value="4">&#9733;</a>
+                <a data-value="5">&#9733;</a>
+              </div>
+              </mat-list-item>
+            <br>
+            <mat-list-item role="listitem">Fuerza: {{ this.villan.powerstats.strength}}&nbsp;&nbsp;  
+                <div class="ec-stars-wrapper">
+                <a data-value="1">&#9733;</a>
+                <a data-value="2">&#9733;</a>
+                <a data-value="3">&#9733;</a>
+                <a data-value="4">&#9733;</a>
+                <a data-value="5">&#9733;</a>
+              </div>
+              </mat-list-item>
+              <mat-list-item><strong>Total:</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{this.poderTotalV}}</mat-list-item>
+          </mat-list>
+     </mat-card-content>
+    </mat-card>
+      </mat-card-content>
+    </mat-card-header>
+</mat-card>
 
+  
 
