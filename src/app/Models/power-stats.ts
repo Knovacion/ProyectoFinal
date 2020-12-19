@@ -1,8 +1,8 @@
 export class PowerStats {
-"combat": string;
-"durability": string;
-"intelligence": string;
-"power": string;
-"speed": string;
-"strength": string;
+"combat": number;
+"durability": number;
+"intelligence": number;
+"power": number;
+"speed": number;
+"strength": number;
 }

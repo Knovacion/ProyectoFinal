@@ -73,7 +73,7 @@ export class VersusComponent implements OnInit {
       res=>{
         this.heroe = new Heroe;
         this.heroe.id = res.id;        
-        this.heroe.images = res.images["md"];
+        this.heroe.images = res.image["url"];
         this.heroe.name= res.name;
         
         this.heroe.biography = res.biography;
@@ -88,12 +88,12 @@ export class VersusComponent implements OnInit {
         this.heroe.powerstats.strength = res.powerstats.strength;  
         
         console.log(this.heroe);
-        this.poderTotalH = parseInt(this.heroe.powerstats.combat) + 
-                           parseInt(this.heroe.powerstats.durability)+ 
-                           parseInt(this.heroe.powerstats.intelligence)+ 
-                           parseInt(this.heroe.powerstats.power) + 
-                           parseInt(this.heroe.powerstats.speed) + 
-                           parseInt(this.heroe.powerstats.strength); 
+        this.poderTotalH = this.heroe.powerstats.combat + 
+                           this.heroe.powerstats.durability+ 
+                           this.heroe.powerstats.intelligence+ 
+                           this.heroe.powerstats.power + 
+                           this.heroe.powerstats.speed + 
+                           this.heroe.powerstats.strength; 
  
       this.flag = true;
       
@@ -107,7 +107,7 @@ export class VersusComponent implements OnInit {
       res=>{
         this.villan = new Heroe;
         this.villan.id = res.id;        
-        this.villan.images = res.images["md"];
+        this.villan.images = res.image["url"];
         this.villan.name= res.name;
 
         this.villan.biography = res.biography;
@@ -122,12 +122,12 @@ export class VersusComponent implements OnInit {
         this.villan.powerstats.strength = res.powerstats.strength;
 
         console.log(this.villan);
-        this.poderTotalV = parseInt(this.villan.powerstats.combat) + 
-        parseInt(this.villan.powerstats.durability)+ 
-        parseInt(this.villan.powerstats.intelligence)+ 
-        parseInt(this.villan.powerstats.power) + 
-        parseInt(this.villan.powerstats.speed) + 
-        parseInt(this.villan.powerstats.strength); 
+        this.poderTotalV = (this.villan.powerstats.combat + 
+        this.villan.powerstats.durability+ 
+        this.villan.powerstats.intelligence+ 
+        this.villan.powerstats.power+ 
+        this.villan.powerstats.speed + 
+        this.villan.powerstats.strength); 
         this.flag2 = true;
       
     

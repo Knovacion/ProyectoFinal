@@ -18,7 +18,9 @@ import { VersusComponent } from "./Body/Versus/versus.component";
 // FIREBASE
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 import { environment } from "src/environments/environment";
 
 //Material
