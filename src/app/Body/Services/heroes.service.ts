@@ -1,6 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Personaje } from "src/app/Interfaces/personaje";
 import { Heroe } from "src/app/Models/heroe";
 import { Respuesta } from "src/app/Models/respuesta";
 import { endPoints, environment } from "../../../environments/environment";
