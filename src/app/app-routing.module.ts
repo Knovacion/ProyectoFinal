@@ -16,12 +16,13 @@ const routes: Routes = [
   },
   {
     path: "villanos",
+    
     component: VillanosComponent,
     // canActivate: [LoginGuardGuard],
   },
   {
     path: "versus",
-    component:VersusComponent
+    component: VersusComponent,
   },
 
   { path: "", redirectTo: "home", pathMatch: "full" },

@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import {CommonModule} from '@angular/common'
-import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -12,8 +12,8 @@ import { RegisterComponent } from "./Body/Register/register/register.component";
 import { LoginComponent } from "./Body/Login/login/login.component";
 import { ClickDirectiveDirective } from "./Directives/click-directive.directive";
 import { HeroesComponent } from "./Body/Heroes/heroes/heroes.component";
-import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
-import { VersusComponent } from './Body/Versus/versus.component';
+
+import { VersusComponent } from "./Body/Versus/versus.component";
 
 // FIREBASE
 import { AngularFireModule } from "@angular/fire";
@@ -24,22 +24,23 @@ import { environment } from "src/environments/environment";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatIconModule } from "@angular/material/icon";
-import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from "@angular/material/card";
+import { MatListModule } from "@angular/material/list";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 
-//Toastgit 
-import { ToastrModule } from 'ngx-toastr';
+//Toastgit
+import { ToastrModule } from "ngx-toastr";
 
 //Directivas
-import { MouseDirectiveDirective } from './Directives/mouse-directive.directive';
+import { MouseDirectiveDirective } from "./Directives/mouse-directive.directive";
 
-
-
+//Infinite Scroll
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
 
 @NgModule({
   declarations: [
@@ -51,9 +52,9 @@ import { MouseDirectiveDirective } from './Directives/mouse-directive.directive'
     LoginComponent,
     ClickDirectiveDirective,
     HeroesComponent,
-    VillanosComponent,
     MouseDirectiveDirective,
-    VersusComponent
+    VersusComponent,
+    VillanosComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,10 +70,11 @@ import { MouseDirectiveDirective } from './Directives/mouse-directive.directive'
     HttpClientModule,
     MatListModule,
     MatDividerModule,
-    ToastrModule.forRoot({timeOut: 1000, preventDuplicates: true}),
+    ToastrModule.forRoot({ timeOut: 1000, preventDuplicates: true }),
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    InfiniteScrollModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
