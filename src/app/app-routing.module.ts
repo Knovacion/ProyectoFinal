@@ -16,7 +16,6 @@ const routes: Routes = [
   },
   {
     path: "villanos",
-    
     component: VillanosComponent,
     // canActivate: [LoginGuardGuard],
   },

@@ -18,6 +18,7 @@ import { VersusComponent } from "./Body/Versus/versus.component";
 // FIREBASE
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "src/environments/environment";
 
 //Material
@@ -60,6 +61,7 @@ import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MatExpansionModule,
