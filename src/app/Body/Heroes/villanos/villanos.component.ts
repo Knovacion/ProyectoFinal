@@ -18,20 +18,14 @@ export class VillanosComponent implements OnInit {
   constructor(private villanoApi: VillanoService) {}
 
   ngOnInit() {
-    // this.getHeroByName();
     this.getAllVillanos();
-
-    // console.log(this.heroes);
   }
 
   splitterFunction(slp: any) {
     console.log(slp);
     let receptor = [];
     receptor = slp.split(",");
-
-    // console.log(receptor);
     this.spliter = receptor;
-
     return this.spliter;
   }
 
