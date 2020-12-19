@@ -20,4 +20,9 @@ export class VillanoService {
   getHeroesById(idHeroe: string): Observable<Heroe> {
     return this.http.get<Heroe>(endPoints.hero + endPoints.tkn + "/" + idHeroe);
   }
+
+  getAll()
+  {
+    return this.http.get<Heroe[]>("https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json")
+  }
 }

@@ -73,7 +73,7 @@ export class VersusComponent implements OnInit {
       res=>{
         this.heroe = new Heroe;
         this.heroe.id = res.id;        
-        this.heroe.image = res.image["url"];
+        this.heroe.images = res.images["md"];
         this.heroe.name= res.name;
         
         this.heroe.biography = res.biography;
@@ -107,7 +107,7 @@ export class VersusComponent implements OnInit {
       res=>{
         this.villan = new Heroe;
         this.villan.id = res.id;        
-        this.villan.image = res.image["url"];
+        this.villan.images = res.images["md"];
         this.villan.name= res.name;
 
         this.villan.biography = res.biography;

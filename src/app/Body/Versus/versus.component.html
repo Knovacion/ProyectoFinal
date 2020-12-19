@@ -18,7 +18,7 @@
 </mat-form-field>
 <mat-card  *ngIf="this.flag == true"  class="col-md-6 bySide">
   <mat-card-header>
-    <img mat-card-image class="Avatar col-md-6" src="{{this.heroe.image}}" alt="Photo {this.heroe.name}}">
+    <img mat-card-image class="Avatar col-md-6" src="{{this.heroe.images}}" alt="Photo {this.heroe.name}}">
     <mat-card-content class=" col-md-6" >
       <mat-card class="hero-card bg-dark ">
       <mat-card-content>
@@ -93,7 +93,7 @@
 </mat-card>
 <mat-card  *ngIf="this.flag2 == true" class="col-md-6 bySide" >
     <mat-card-header>
-      <img mat-card-image class="Avatar col-md-6" src="{{this.villan.image}}" alt="Photo {this.villan.name}}">
+      <img mat-card-image class="Avatar col-md-6" src="{{this.villan.images}}" alt="Photo {this.villan.name}}">
       <mat-card-content class=" col-md-6" >
         <mat-card class="hero-card bg-dark ">
         <mat-card-content>

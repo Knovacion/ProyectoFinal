@@ -4,7 +4,7 @@
 
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <img class="ClassImagenRadio" src="{{item.image}}" alt="{{item.name}}">
+        <img class="ClassImagenRadio" src="{{item.images}}" alt="{{item.name}}">
       </mat-panel-title>
       <mat-panel-description>
         {{item.name}}
@@ -75,7 +75,7 @@
                 Afiliaciones
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <mat-list-item role="listitem" *ngFor="let afil of item.connections.groupaffiliation">
+            <mat-list-item role="listitem" *ngFor="let afil of item.connections.groupAffiliation">
               <mat-list role="list" style="font-size: 12px;">{{afil}}</mat-list>
             </mat-list-item>
           </mat-expansion-panel>

@@ -17,7 +17,7 @@
   <mat-expansion-panel *ngFor="let pj of this.heroes" hideToggle>
     <mat-expansion-panel-header appMouseDirective>
       <mat-panel-title>
-        <img class="ClassImagenRadio" src="{{pj.image}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}</p>
+        <img class="ClassImagenRadio" src="{{pj.images}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}</p>
       </mat-panel-title>
       <mat-panel-description style="text-align:left" appMouseDirective>
         {{pj.biography.fullname}}
@@ -25,7 +25,7 @@
     </mat-expansion-panel-header>
     <mat-card style="align-items: center;">
       <mat-card-header>
-        <img mat-card-image class="Avatar" src="{{pj.image}}" alt="Photo {{pj.name}}">
+        <img mat-card-image class="Avatar" src="{{pj.images}}" alt="Photo {{pj.name}}">
         <mat-card-content class="cardLeft" >
           <mat-card class="hero-card bg-dark ">
           <mat-card-content>
@@ -99,7 +99,7 @@
                       Afiliaciones
                     </mat-panel-title>
                   </mat-expansion-panel-header>       
-                    <mat-list-item role="listitem" *ngFor="let afil of this.heroe.connections.groupaffiliation">
+                    <mat-list-item role="listitem" *ngFor="let afil of this.heroe.connections.groupAffiliation">
                       <mat-list role="list" style="font-size: 12px;">{{afil}}</mat-list>
                     </mat-list-item>  
                 </mat-expansion-panel>

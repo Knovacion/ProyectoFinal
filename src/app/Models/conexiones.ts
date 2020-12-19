@@ -1,4 +1,5 @@
 export class Conexiones {
-  "groupaffiliation": string[]
+  "groupAffiliation": string[]
+  "group-affiliation": string[]
   "relatives": string[]
 }

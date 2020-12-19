@@ -9,6 +9,7 @@ export class Heroe {
   "biography": Biografia;
   "connections": Conexiones;
   "id": string;
+  "images": string;
   "image": string;
   "name": string;
   "powerstats": PowerStats;
