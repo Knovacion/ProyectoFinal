@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { Heroe } from "src/app/Models/heroe";
 import { Respuesta } from "src/app/Models/respuesta";
+// import { Favorito } from "src/app/Models/favorito";
 import { VillanoService } from "../../Services/villano.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
-
+import { FirestoreService } from "../../Services/firestore.service";
+import { Favoritos } from "../../../Interfaces/favoritos";
 @Component({
   selector: "app-villanos",
   templateUrl: "./villanos.component.html",
@@ -16,12 +18,14 @@ export class VillanosComponent implements OnInit {
   public panelOpenState = false;
   public contenedor: any = Object;
   public spliter = [];
+
   // private finishPage = 20;
   // private actualPage: number;
 
   constructor(
     private villanoApi: VillanoService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private firestoreService: FirestoreService
   ) {
     // this.actualPage = 1;
   }
@@ -95,6 +99,7 @@ export class VillanosComponent implements OnInit {
   recorridoHeroes(villanoArray: Heroe[]) {
     let objHeroe: Heroe;
     this.heroes = [];
+
     for (let i = 0; i < villanoArray.length; i++) {
       objHeroe = villanoArray[i];
       // console.log(res[i]);
@@ -148,12 +153,29 @@ export class VillanosComponent implements OnInit {
     }
   }
 
-  // onScroll() {
-  //   if (this.actualPage < this.finishPage) {
-  //     this.getAllVillanos();
-  //     this.actualPage++;
-  //   } else {
-  //     console.log("No more lines. Finish page!");
-  //   }
-  // }
+  addFavorito(idVillano: number) {
+    let uid: string = localStorage.getItem("uid");
+    const objFavorito: Favoritos = {
+      uid: uid,
+      idHeroe: idVillano.toString(),
+    };
+
+    this.firestoreService.registerFavoritos(objFavorito).then((resp) => {
+      if (resp == uid) {
+        this.toastr.success("Agregado a favoritos", "Proceso Correcto");
+      } else {
+        this.toastr.error("No se pudo agregar a favorito", "Alerta");
+      }
+    });
+  }
+
+  getFavoritos() {
+    let uid: string = localStorage.getItem("uid");
+
+    this.firestoreService.getFavoritos(uid).subscribe((resp) => {
+      console.log(resp);
+    });
+  }
+
+
 }

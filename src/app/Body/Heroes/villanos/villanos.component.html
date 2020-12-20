@@ -1,4 +1,3 @@
-
 <!-- <div class="container" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()"> -->
 <!-- </div> -->
 
@@ -15,13 +14,20 @@
   </div>
 
   <mat-accordion>
+
+
     <mat-expansion-panel *ngFor="let pj of this.heroes" hideToggle appMouseDirective>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <img class="ClassImagenRadio" src="{{pj.images}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}</p>
         </mat-panel-title>
         <mat-panel-description style="text-align:left">
-          {{pj.biography.fullname}}
+          <div class="col-11">
+            {{pj.biography.fullname}}
+          </div>
+          <div class="col-1" (click) = "addFavorito(pj.id)" >
+            <a class="favorito"> &#9733;</a> 
+          </div>
         </mat-panel-description>
       </mat-expansion-panel-header>
       <mat-card style="align-items: center;">
