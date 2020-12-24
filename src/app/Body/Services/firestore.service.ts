@@ -1,6 +1,8 @@
+import { stringify } from "@angular/compiler/src/util";
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
+import { promise } from "protractor";
 import { Observable } from "rxjs";
 import { User } from "src/app/Interfaces/user";
 import { Favoritos } from "../../Interfaces/favoritos";
@@ -13,6 +15,9 @@ export class FirestoreService {
     private angularFireAuth: AngularFireAuth,
     private angularFirestore: AngularFirestore
   ) {}
+
+  public lstFavoritos: Favoritos[] = [];
+  public objFavorito: any;
 
   async IniciarSesion(txtCorreo: string, txtPass: string) {
     try {
@@ -68,12 +73,10 @@ export class FirestoreService {
 
   async registerFavoritos(data: Favoritos): Promise<any> {
     try {
-      console.log(data, "aqyuuu");
-
       const favorito = await this.angularFirestore
         .collection("Favoritos")
         .add(data);
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       return error;
@@ -90,21 +93,60 @@ export class FirestoreService {
   //     return error;
   //   }
   // }
-  getFavoritos(uid: string) {
+  async getFavoritos(uid: string): Promise<Favoritos[]> {
     try {
-      this.angularFirestore.firestore
+      const RespFav = await this.angularFirestore.firestore
         .collection("Favoritos")
         .where("uid", "==", uid)
         .get()
         .then((respuesta) => {
           respuesta.forEach((resp) => {
-            console.log(resp.data());
-            return resp.data();
+            this.objFavorito = resp.data();
+
+            this.lstFavoritos.push(this.objFavorito);
           });
         });
+      return this.lstFavoritos;
     } catch (error) {
       console.log(error);
       return error;
+    }
+  }
+
+  async getFavoritosDelete(uid: string, idHeroe: string): Promise<string> {
+    try {
+      let documento: string = "";
+      const RespFav = await this.angularFirestore.firestore
+        .collection("Favoritos")
+        .where("uid", "==", uid)
+        .where("idHeroe", "==", idHeroe)
+        .get()
+        .then((respuesta) => {
+          respuesta.forEach((resp) => {
+            // console.log(resp.id);
+            documento = resp.id;
+          });
+        });
+      return documento;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  async deleteFavoritos(idDocumento: string): Promise<boolean> {
+    try {
+      const favorito = await this.angularFirestore
+        .collection("Favoritos")
+        .doc(idDocumento)
+        .delete()
+        .then((resp) => {
+          // console.log(resp);
+        });
+      // console.log(data);
+      return true;
+    } catch (error) {
+      return false;
     }
   }
 }

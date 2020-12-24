@@ -18,6 +18,7 @@ export class VillanosComponent implements OnInit {
   public panelOpenState = false;
   public contenedor: any = Object;
   public spliter = [];
+  public lstFavo: Favoritos[] = [];
 
   // private finishPage = 20;
   // private actualPage: number;
@@ -35,7 +36,7 @@ export class VillanosComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.getAllVillanos();
+    this.getFavoritos();
   }
 
   onKey(event: any) {
@@ -64,14 +65,10 @@ export class VillanosComponent implements OnInit {
           this.heroes = [];
           lstRespHeroe = res.results;
           if (lstRespHeroe.length > 1) {
-            // console.log("if");
             this.recorridoHeroes(lstRespHeroe);
           } else if (lstRespHeroe.length == 1) {
-            // console.log("else if");
             this.recorridoHeroes(lstRespHeroe);
-            // console.log("Le contenedor", this.contenedor);
           }
-
           if (this.heroes.length == 0) {
             this.toastr.warning(
               "No se han encontrado resultados para su búsqueda",
@@ -99,7 +96,6 @@ export class VillanosComponent implements OnInit {
   recorridoHeroes(villanoArray: Heroe[]) {
     let objHeroe: Heroe;
     this.heroes = [];
-
     for (let i = 0; i < villanoArray.length; i++) {
       objHeroe = villanoArray[i];
       // console.log(res[i]);
@@ -108,6 +104,11 @@ export class VillanosComponent implements OnInit {
         this.heroe = new Heroe();
         // console.log(objHeroe.name);
         this.heroe.id = objHeroe.id;
+        this.lstFavo.forEach((fav) => {
+          if (fav.idHeroe == this.heroe.id) {
+            this.heroe.favorito = true;
+          }
+        });
         this.heroe.images =
           objHeroe.images === undefined
             ? objHeroe.image["url"]
@@ -153,29 +154,51 @@ export class VillanosComponent implements OnInit {
     }
   }
 
-  addFavorito(idVillano: number) {
+  addFavorito(idVillano: number, favorito: boolean) {
     let uid: string = localStorage.getItem("uid");
     const objFavorito: Favoritos = {
       uid: uid,
       idHeroe: idVillano.toString(),
     };
 
-    this.firestoreService.registerFavoritos(objFavorito).then((resp) => {
-      if (resp == uid) {
-        this.toastr.success("Agregado a favoritos", "Proceso Correcto");
-      } else {
-        this.toastr.error("No se pudo agregar a favorito", "Alerta");
-      }
-    });
+    if (favorito) {
+      this.firestoreService
+        .getFavoritosDelete(uid, idVillano.toString())
+        .then((resp) => {
+          if (resp != "") {
+            this.firestoreService.deleteFavoritos(resp).then((resp) => {
+              if (resp) {
+                this.toastr.success(
+                  "Eliminado de favoritos correctamente",
+                  "Proceso Correcto"
+                );
+              } else {
+                this.toastr.error("No se pude eliminar de favoritos", "Alerta");
+              }
+              console.log("respuesta eliminar componente ", resp);
+            });
+          } else {
+            this.toastr.error("No se pude eliminar de favoritos", "Alerta");
+          }
+        });
+    } else {
+      this.firestoreService.registerFavoritos(objFavorito).then((resp) => {
+        if (resp.uid == uid) {
+          this.toastr.success("Agregado a favoritos", "Proceso Correcto");
+        } else {
+          this.toastr.error("No se pudo agregar a favorito", "Alerta");
+        }
+      });
+    }
   }
 
-  getFavoritos() {
+  async getFavoritos() {
     let uid: string = localStorage.getItem("uid");
 
-    this.firestoreService.getFavoritos(uid).subscribe((resp) => {
-      console.log(resp);
+    await this.firestoreService.getFavoritos(uid.toString()).then((resp) => {
+      this.lstFavo = resp;
+      this.getAllVillanos();
+      return this.lstFavo;
     });
   }
-
-
 }

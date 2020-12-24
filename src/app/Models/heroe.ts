@@ -14,4 +14,5 @@ export class Heroe {
   "name": string;
   "powerstats": PowerStats;
   "work": Trabajo;
+  "favorito": boolean = false;
 }
