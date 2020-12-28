@@ -14,12 +14,12 @@
 
       
 <mat-accordion >
-  <mat-expansion-panel *ngFor="let pj of this.heroes" hideToggle>
-    <mat-expansion-panel-header appMouseDirective>
+  <mat-expansion-panel *ngFor="let pj of this.heroes" hideToggle appMouseDirective>
+    <mat-expansion-panel-header >
       <mat-panel-title>
         <img class="ClassImagenRadio" src="{{pj.images}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}</p>
       </mat-panel-title>
-      <mat-panel-description style="text-align:left" appMouseDirective>
+      <mat-panel-description style="text-align:left">
         {{pj.biography.fullname}}
       </mat-panel-description>
     </mat-expansion-panel-header>
@@ -33,7 +33,7 @@
             <mat-card-subtitle><strong>Nombre: </strong>  {{pj.biography.fullname}}</mat-card-subtitle>
             <mat-card-subtitle>
               <mat-accordion>
-              <mat-expansion-panel hideToggle>
+              <mat-expansion-panel hideToggle appMouseDirective>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     Apariencia
@@ -50,7 +50,7 @@
           </mat-card-subtitle>
             <mat-card-subtitle> 
               <mat-accordion>
-              <mat-expansion-panel hideToggle>
+              <mat-expansion-panel hideToggle appMouseDirective>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     Biografia
@@ -61,7 +61,7 @@
                 </mat-list-item>
               </mat-list> 
               <mat-accordion>
-                <mat-expansion-panel hideToggle>
+                <mat-expansion-panel hideToggle appMouseDirective>
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                       Alias
@@ -85,7 +85,7 @@
           </mat-card-subtitle>
           <mat-card-subtitle>
             <mat-accordion>
-            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel hideToggle appMouseDirective>
               <mat-expansion-panel-header>
                 <mat-panel-title>
                   Conexiones
@@ -93,7 +93,7 @@
                 <br>
               </mat-expansion-panel-header>
               <mat-accordion>
-                <mat-expansion-panel hideToggle>
+                <mat-expansion-panel hideToggle appMouseDirective>
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                       Afiliaciones
@@ -113,7 +113,7 @@
         </mat-card-subtitle>  
         <mat-card-subtitle>
           <mat-accordion>
-          <mat-expansion-panel hideToggle>
+          <mat-expansion-panel hideToggle appMouseDirective>
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Estadisticas de Poder
@@ -132,7 +132,7 @@
       </mat-card-subtitle>
       <mat-card-subtitle>
         <mat-accordion>
-        <mat-expansion-panel hideToggle>
+        <mat-expansion-panel hideToggle appMouseDirective>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Trabajo
@@ -152,3 +152,4 @@
     </mat-card>
   </mat-expansion-panel>
 </mat-accordion>
+<button mat-raised-button color="accent" (click)="siguiente()">Siguiente</button>

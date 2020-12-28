@@ -42,8 +42,9 @@ import { ToastrModule } from "ngx-toastr";
 import { MouseDirectiveDirective } from "./Directives/mouse-directive.directive";
 
 //Infinite Scroll
-import { InfiniteScrollModule } from "ngx-infinite-scroll";
+
 import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
+
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
     MouseDirectiveDirective,
     VersusComponent,
     VillanosComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -78,7 +80,7 @@ import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    InfiniteScrollModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
