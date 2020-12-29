@@ -7,6 +7,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { FirestoreService } from "../../Services/firestore.service";
 import { Favoritos } from "../../../Interfaces/favoritos";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-villanos",
   templateUrl: "./villanos.component.html",
@@ -20,15 +21,18 @@ export class VillanosComponent implements OnInit {
   public spliter = [];
   public lstFavo: Favoritos[] = [];
 
-  // private finishPage = 20;
-  // private actualPage: number;
+  public lstHeroeDefinitiva: Heroe[] = [];
 
+  private finishPage = 5;
+  private actualPage: number;
+  private contadorLinea: number = 0;
   constructor(
     private villanoApi: VillanoService,
     private toastr: ToastrService,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private router: Router
   ) {
-    // this.actualPage = 1;
+    this.actualPage = 1;
   }
 
   public SearchForm = new FormGroup({
@@ -39,11 +43,28 @@ export class VillanosComponent implements OnInit {
     this.getFavoritos();
   }
 
-  onKey(event: any) {
-    // without type info
+  onScroll() {
+    if (this.actualPage < this.finishPage) {
+      this.cargaListaScroll();
+      this.actualPage++;
+    } else {
+      console.log("No more lines. Finish page!");
+    }
+  }
 
+  onKey(event: any) {
     this.searchByName();
   }
+
+  cargaListaScroll() {
+    for (let i = 0; i < 40; i++) {
+      if (this.contadorLinea < this.heroes.length) {
+        this.lstHeroeDefinitiva.push(this.heroes[this.contadorLinea]);
+      }
+      this.contadorLinea++;
+    }
+  }
+
   splitterFunction(slp: any) {
     let receptor = [];
     receptor = slp.split(",");
@@ -62,22 +83,28 @@ export class VillanosComponent implements OnInit {
         lstRespHeroeAux.results = [];
         let lstRespHeroe = lstRespHeroeAux.results;
         this.villanoApi.getHeroesByName(villano).subscribe((res) => {
-          this.heroes = [];
-          lstRespHeroe = res.results;
-          if (lstRespHeroe.length > 1) {
-            this.recorridoHeroes(lstRespHeroe);
-          } else if (lstRespHeroe.length == 1) {
-            this.recorridoHeroes(lstRespHeroe);
-          }
-          if (this.heroes.length == 0) {
+          console.log(res);
+          if (res.response != "error") {
+            this.heroes = [];
+            lstRespHeroe = res.results;
+            if (lstRespHeroe.length > 1) {
+              this.recorridoHeroes(lstRespHeroe);
+            } else if (lstRespHeroe.length == 1) {
+              this.recorridoHeroes(lstRespHeroe);
+            }
+            if (this.heroes.length == 0) {
+              this.toastr.warning(
+                "No se han encontrado resultados para su búsqueda",
+                "Alerta"
+              );
+            }
+            this.lstHeroeDefinitiva = this.heroes;
+          } else {
             this.toastr.warning(
               "No se han encontrado resultados para su búsqueda",
               "Alerta"
             );
           }
-
-          // console.log(re[0]);
-          // console.log("bio", re[0].biography["full-name"]);
         });
       }
     }
@@ -90,6 +117,7 @@ export class VillanosComponent implements OnInit {
   getAllVillanos() {
     this.villanoApi.getAll().subscribe((res) => {
       this.recorridoHeroes(res);
+      this.cargaListaScroll();
     });
   }
 
@@ -154,7 +182,7 @@ export class VillanosComponent implements OnInit {
     }
   }
 
-  addFavorito(idVillano: number, favorito: boolean) {
+  async addFavorito(idVillano: number, favorito: boolean, index: number) {
     let uid: string = localStorage.getItem("uid");
     const objFavorito: Favoritos = {
       uid: uid,
@@ -172,19 +200,23 @@ export class VillanosComponent implements OnInit {
                   "Eliminado de favoritos correctamente",
                   "Proceso Correcto"
                 );
+                this.lstHeroeDefinitiva[index].favorito = false;
               } else {
-                this.toastr.error("No se pude eliminar de favoritos", "Alerta");
+                this.toastr.error(
+                  "No se puede eliminar de favoritos",
+                  "Alerta"
+                );
               }
-              console.log("respuesta eliminar componente ", resp);
             });
           } else {
-            this.toastr.error("No se pude eliminar de favoritos", "Alerta");
+            this.toastr.error("No se puede eliminar de favoritos", "Alerta");
           }
         });
     } else {
       this.firestoreService.registerFavoritos(objFavorito).then((resp) => {
         if (resp.uid == uid) {
           this.toastr.success("Agregado a favoritos", "Proceso Correcto");
+          this.lstHeroeDefinitiva[index].favorito = true;
         } else {
           this.toastr.error("No se pudo agregar a favorito", "Alerta");
         }
@@ -194,7 +226,6 @@ export class VillanosComponent implements OnInit {
 
   async getFavoritos() {
     let uid: string = localStorage.getItem("uid");
-
     await this.firestoreService.getFavoritos(uid.toString()).then((resp) => {
       this.lstFavo = resp;
       this.getAllVillanos();
