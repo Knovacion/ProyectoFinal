@@ -1,9 +1,9 @@
 <div clas="col-md-12">
   <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
     <div class="col-md-1">
-      <label>Usuario</label>
+      <label class="Labels" >Usuario</label>
     </div>
-    <div class="col-md-4 form-group">
+    <div class="col-md-12 form-group">
       <input type="email" class="form-control" formControlName="txtCorreo" placeholder="Correo">
       <div class="col-md-4" *ngIf="correo.invalid && (correo.dirty || correo.touched)" class="ErrorForm">
         <div *ngIf="correo.errors.required">
@@ -16,9 +16,9 @@
     </div>
     <br>
     <div class="col-md-1">
-      <label>Contraseña</label>
+      <label class="Labels">Contraseña</label>
     </div>
-    <div class="col-md-4 form-group">
+    <div class="col-md-12 form-group">
       <input type="password" class="form-control" formControlName="txtPass" placeholder="Ingrese Usuario">
       <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="ErrorForm">
         <div *ngIf="pass.errors.required">
@@ -32,8 +32,8 @@
 
     <br>
     <div class="col-md-3">
-      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success " id="btnIniciarSesion">Iniciar
-        Sesión</button>
+      <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success btn-lg" id="btnIniciarSesion">Entrar</button>
     </div>
   </form>
+  <br>
 </div>

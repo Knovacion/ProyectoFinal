@@ -1,8 +1,9 @@
-<div class="row">
-  <div class="col-md-6 mx-auto mt-5">
-      <h1>Registro</h1>
+<div class="col-md-12">
       <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
-        <div class="form-group">
+        <div class="col-md-1">
+            <label class="Labels">Registro</label>
+          </div>
+        <div class="form-group col-md-12">
             <input type="text" class="form-control" formControlName="name" placeholder="Nombre">
         </div>
         <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
@@ -13,7 +14,7 @@
              Ingrese min 6 caracteres.
           </div>
       </div>
-          <div class="form-group">
+          <div class="form-group col-md-12">
               <input type="email" class="form-control" formControlName="email" placeholder="email">
           </div>
           <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
@@ -24,7 +25,7 @@
                    Formato Incorrecto.
               </div>
           </div>
-          <div class="form-group">
+          <div class="form-group col-md-12">
               <input type="password" class="form-control" formControlName="pass" placeholder="Password">
           </div>
           <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="alert alert-danger">
@@ -35,8 +36,9 @@
                 Ingrese min 6 caracteres.
               </div>
           </div>
-
-          <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary btn-lg">Register</button>
-      </form>
+          <div class="col-md-3">
+          <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary btn-lg">Registrar</button>
+          </div>
+        </form>
+        <br>
   </div>
-</div>
