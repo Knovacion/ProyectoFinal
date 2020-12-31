@@ -19,7 +19,7 @@ import { VersusComponent } from "./Body/Versus/versus.component";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { environment } from "src/environments/environment";
 
@@ -34,7 +34,8 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
-
+import { MatButtonModule } from "@angular/material/button";
+import { MatTabsModule } from "@angular/material/tabs";
 
 //Toastgit
 import { ToastrModule } from "ngx-toastr";
@@ -43,12 +44,9 @@ import { ToastrModule } from "ngx-toastr";
 import { MouseDirectiveDirective } from "./Directives/mouse-directive.directive";
 
 //Infinite Scroll
-import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
-
-
-
 
 @NgModule({
   declarations: [
@@ -63,7 +61,6 @@ import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
     MouseDirectiveDirective,
     VersusComponent,
     VillanosComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -85,8 +82,8 @@ import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
     MatInputModule,
     MatSelectModule,
     InfiniteScrollModule,
-  
-    
+    MatButtonModule,
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
