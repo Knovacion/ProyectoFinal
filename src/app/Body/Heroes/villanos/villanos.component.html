@@ -1,6 +1,3 @@
-<!-- <div class="container" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()"> -->
-<!-- </div> -->
-
 <form [formGroup]="SearchForm" class="bg-dark" (ngSubmit)="searchByName()">
   <div class="col-md-12 form-group bg-dark SearchBarSize">
     <div class="input-group">
@@ -17,17 +14,25 @@
 
     <mat-accordion>
       <mat-expansion-panel *ngFor="let pj of this.lstHeroeDefinitiva; index as i" hideToggle appMouseDirective>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
+        <mat-expansion-panel-header #expansionPanel (click)="expansionPanel._toggle()">
+          <mat-panel-title (click)="expansionPanel._toggle()">
             <img class="ClassImagenRadio" src="{{pj.images}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}
             </p>
           </mat-panel-title>
           <mat-panel-description style="text-align:left">
-            <div class="col-11">
+            <div class="col-11" (click)="expansionPanel._toggle()">
               {{pj.biography.fullname}}
             </div>
-            <div class="col-1" (click)="addFavorito(pj.id,pj.favorito, i)">
-              <a [ngClass]="{'favorito':pj.favorito == true,'noFavorito':pj.favorito == false}"> &#9733;</a>
+            <div class="col-1">
+              <div class="example-button-row">
+                <div class="example-flex-container">
+                  <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                    [ngClass]="{'favorito':pj.favorito == true,'noFavorito':pj.favorito == false}"
+                    (click)="addFavorito(pj.id,pj.favorito, i)" type="button">
+                    <mat-icon>star</mat-icon>
+                  </button>
+                </div>
+              </div>
             </div>
           </mat-panel-description>
         </mat-expansion-panel-header>
@@ -169,5 +174,9 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
+
+  <button [ngClass]="'no-hidden'" type="button" *ngIf="showGoUpButton" class="btn btn-dark" (click)="scrollTop()">
+    <mat-icon aria-hidden="false" aria-label="Example home icon">arrow_circle_up</mat-icon>
+  </button>
 
 </form>

@@ -22,6 +22,9 @@ export class VersusComponent implements OnInit {
   public poderTotalH: number = 0;
   public poderTotalV: number = 0;
 
+  public ganadorVillano: boolean = false;
+  public ganadorHeroe: boolean = false;
+
   constructor(public heroApi: HeroesService) {}
 
   ngOnInit() {
@@ -62,71 +65,89 @@ export class VersusComponent implements OnInit {
     console.log("Dimelo kurko", this.spliter);
     return this.spliter;
   }
-  getHeroe(id:number)
-  {
-    this.heroApi.getCharactersById(id).subscribe(
-      res=>{
-        this.heroe = new Heroe;
-        this.heroe.id = res.id;        
-        this.heroe.images = res.image["url"];
-        this.heroe.name= res.name;
-        
-        this.heroe.biography = res.biography;
-        this.heroe.biography.fullname = res.biography["fullname"];
+  getHeroe(id: number) {
+    this.heroApi.getCharactersById(id).subscribe((res) => {
+      this.heroe = new Heroe();
+      this.heroe.id = res.id;
+      this.heroe.images = res.image["url"];
+      this.heroe.name = res.name;
 
-        this.heroe.powerstats = res.powerstats;
-        this.heroe.powerstats.combat = res.powerstats.combat;
-        this.heroe.powerstats.durability = res.powerstats.durability;
-        this.heroe.powerstats.intelligence = res.powerstats.intelligence;
-        this.heroe.powerstats.power = res.powerstats.power;
-        this.heroe.powerstats.speed = res.powerstats.speed;
-        this.heroe.powerstats.strength = res.powerstats.strength;  
-        
-      
-        this.poderTotalH = parseInt(this.heroe.powerstats.combat.toString()) + 
-                           parseInt(this.heroe.powerstats.durability.toString())+ 
-                           parseInt(this.heroe.powerstats.intelligence.toString())+ 
-                           parseInt(this.heroe.powerstats.power.toString()) + 
-                           parseInt(this.heroe.powerstats.speed.toString()) + 
-                           parseInt(this.heroe.powerstats.strength.toString()); 
-   
+      this.heroe.biography = res.biography;
+      this.heroe.biography.fullname = res.biography["fullname"];
+
+      this.heroe.powerstats = res.powerstats;
+      this.heroe.powerstats.combat = res.powerstats.combat;
+      this.heroe.powerstats.durability = res.powerstats.durability;
+      this.heroe.powerstats.intelligence = res.powerstats.intelligence;
+      this.heroe.powerstats.power = res.powerstats.power;
+      this.heroe.powerstats.speed = res.powerstats.speed;
+      this.heroe.powerstats.strength = res.powerstats.strength;
+
+      this.poderTotalH =
+        parseInt(this.heroe.powerstats.combat.toString()) +
+        parseInt(this.heroe.powerstats.durability.toString()) +
+        parseInt(this.heroe.powerstats.intelligence.toString()) +
+        parseInt(this.heroe.powerstats.power.toString()) +
+        parseInt(this.heroe.powerstats.speed.toString()) +
+        parseInt(this.heroe.powerstats.strength.toString());
+
+      console.log("get heroe");
+      if (this.poderTotalV > 0 && this.poderTotalH > 0) {
+        console.log("Heroes ", this.poderTotalH);
+        console.log("Villano ", this.poderTotalV);
+        if (this.poderTotalH > this.poderTotalV) {
+          this.ganadorHeroe = true;
+          this.ganadorVillano = false;
+        } else {
+          this.ganadorVillano = true;
+          this.ganadorHeroe = false;
+        }
+      }
+
       this.flag = true;
-      
-    })
-
+    });
   }
 
-  getVillan(id:number)
-  {
-    this.heroApi.getCharactersById(id).subscribe(
-      res=>{
-        this.villan = new Heroe;
-        this.villan.id = res.id;        
-        this.villan.images = res.image["url"];
-        this.villan.name= res.name;
+  getVillan(id: number) {
+    this.heroApi.getCharactersById(id).subscribe((res) => {
+      this.villan = new Heroe();
+      this.villan.id = res.id;
+      this.villan.images = res.image["url"];
+      this.villan.name = res.name;
 
-        this.villan.biography = res.biography;
-        this.villan.biography.fullname = res.biography["full-name"];
+      this.villan.biography = res.biography;
+      this.villan.biography.fullname = res.biography["full-name"];
 
-        this.villan.powerstats = res.powerstats;
-        this.villan.powerstats.combat = res.powerstats.combat;
-        this.villan.powerstats.durability = res.powerstats.durability;
-        this.villan.powerstats.intelligence = res.powerstats.intelligence;
-        this.villan.powerstats.power = res.powerstats.power;
-        this.villan.powerstats.speed = res.powerstats.speed;
-        this.villan.powerstats.strength = res.powerstats.strength;
+      this.villan.powerstats = res.powerstats;
+      this.villan.powerstats.combat = res.powerstats.combat;
+      this.villan.powerstats.durability = res.powerstats.durability;
+      this.villan.powerstats.intelligence = res.powerstats.intelligence;
+      this.villan.powerstats.power = res.powerstats.power;
+      this.villan.powerstats.speed = res.powerstats.speed;
+      this.villan.powerstats.strength = res.powerstats.strength;
 
-        console.log(this.villan);
-        this.poderTotalV = parseInt(this.villan.powerstats.combat.toString()) + 
-                           parseInt(this.villan.powerstats.durability.toString())+ 
-                           parseInt(this.villan.powerstats.intelligence.toString())+ 
-                           parseInt(this.villan.powerstats.power.toString())+ 
-                           parseInt(this.villan.powerstats.speed.toString()) + 
-                           parseInt(this.villan.powerstats.strength.toString()); 
-        this.flag2 = true;
-      
-    
-    })
+      console.log(this.villan);
+      this.poderTotalV =
+        parseInt(this.villan.powerstats.combat.toString()) +
+        parseInt(this.villan.powerstats.durability.toString()) +
+        parseInt(this.villan.powerstats.intelligence.toString()) +
+        parseInt(this.villan.powerstats.power.toString()) +
+        parseInt(this.villan.powerstats.speed.toString()) +
+        parseInt(this.villan.powerstats.strength.toString());
+
+      if (this.poderTotalV > 0 && this.poderTotalH > 0) {
+        console.log("Heroes ", this.poderTotalH);
+        console.log("Villano ", this.poderTotalV);
+        if (this.poderTotalH > this.poderTotalV) {
+          this.ganadorHeroe = true;
+          this.ganadorVillano = false;
+        } else {
+          this.ganadorVillano = true;
+          this.ganadorHeroe = false;
+        }
+      }
+      this.flag2 = true;
+    });
+    console.log("getVillano ");
   }
-  
 }

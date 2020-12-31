@@ -1,7 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { Heroe } from "src/app/Models/heroe";
 import { Respuesta } from "src/app/Models/respuesta";
-// import { Favorito } from "src/app/Models/favorito";
 import { VillanoService } from "../../Services/villano.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
@@ -26,6 +25,10 @@ export class VillanosComponent implements OnInit {
   private finishPage = 5;
   private actualPage: number;
   private contadorLinea: number = 0;
+  private showGoUpButton: boolean;
+  private showScrollHeight = 400;
+  private hideScrollHeight = 200;
+
   constructor(
     private villanoApi: VillanoService,
     private toastr: ToastrService,
@@ -33,6 +36,7 @@ export class VillanosComponent implements OnInit {
     private router: Router
   ) {
     this.actualPage = 1;
+    this.showGoUpButton = false;
   }
 
   public SearchForm = new FormGroup({
@@ -111,6 +115,7 @@ export class VillanosComponent implements OnInit {
   }
 
   searchByName() {
+    console.log('entre');
     this.getHeroByName(this.SearchForm.value.txtSearch);
   }
 
@@ -183,6 +188,7 @@ export class VillanosComponent implements OnInit {
   }
 
   async addFavorito(idVillano: number, favorito: boolean, index: number) {
+    this.panelOpenState = false;
     let uid: string = localStorage.getItem("uid");
     const objFavorito: Favoritos = {
       uid: uid,
@@ -231,5 +237,26 @@ export class VillanosComponent implements OnInit {
       this.getAllVillanos();
       return this.lstFavo;
     });
+  }
+
+  scrollTop() {
+    document.body.scrollTop = 0; // Safari
+    document.documentElement.scrollTop = 0; // Other
+  }
+
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    if (( window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop) > this.showScrollHeight) {
+      this.showGoUpButton = true;
+    } else if ( this.showGoUpButton &&
+      (window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop)
+      < this.hideScrollHeight) {
+      this.showGoUpButton = false;
+    }
   }
 }

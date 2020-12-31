@@ -1,6 +1,5 @@
-
 <mat-divider></mat-divider>
-<mat-form-field  class="col-md-6 bg-dark">
+<mat-form-field class="col-md-6 bg-dark">
   <mat-label>Elige a tu Heroe</mat-label>
   <mat-select (selectionChange)="heroeSelect($event.value)">
     <mat-option *ngFor="let hero of this.allHeroes" [value]="hero.id">
@@ -8,7 +7,7 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-<mat-form-field  class="col-md-6 bg-dark">
+<mat-form-field class="col-md-6 bg-dark">
   <mat-label>Elige a tu Villano</mat-label>
   <mat-select (selectionChange)="villanSelect($event.value)">
     <mat-option *ngFor="let villan of this.allVillans" [value]="villan.id">
@@ -16,156 +15,218 @@
     </mat-option>
   </mat-select>
 </mat-form-field>
-<mat-card  *ngIf="this.flag == true"  class="col-md-6 bySide">
+<mat-card *ngIf="this.flag == true" class="col-md-6 bySide "
+  [ngClass]="{'recuadroAccordeon':ganadorHeroe,'recuadroNoAccordeon':!ganadorHeroe}">
   <mat-card-header>
-    <img mat-card-image class="Avatar col-md-6" src="{{this.heroe.images}}" alt="Photo {this.heroe.name}}">
-    <mat-card-content class=" col-md-6" >
+    <img mat-card-image class="Avatar col-md-6"
+      [ngClass]="{'recuadroAccordeon':ganadorHeroe,'recuadroNoAccordeon':!ganadorHeroe}" src="{{this.heroe.images}}"
+      alt="Photo {{this.heroe.name}}">
+    <mat-card-content class=" col-md-6">
       <mat-card class="hero-card bg-dark ">
-      <mat-card-content>
-        <mat-card-title ><strong> {{this.heroe.name}}</strong></mat-card-title>
-        <mat-card-subtitle><strong>Nombre: </strong>  {{this.heroe.biography.fullname}}</mat-card-subtitle>
-        <mat-list role="list">
-          <mat-list-item role="listitem">Combate: {{ this.heroe.powerstats.combat}} &nbsp;&nbsp;
-            <div class="ec-stars-wrapper">
-              <a data-value="1" [ngClass]="{'ratedStar':this.heroe.powerstats.combat >10,'unratedStar':this.heroe.powerstats.combat == 0}" >&#9733;</a>
-              <a data-value="2" [ngClass]="{'ratedStar':this.heroe.powerstats.combat >20,'unratedStar':this.heroe.powerstats.combat <= 9}" >&#9733;</a>
-              <a data-value="3" [ngClass]="{'ratedStar':this.heroe.powerstats.combat >40,'unratedStar':this.heroe.powerstats.combat <= 29}" >&#9733;</a>
-              <a data-value="4" [ngClass]="{'ratedStar':this.heroe.powerstats.combat >70,'unratedStar':this.heroe.powerstats.combat <= 49}" >&#9733;</a>
-              <a data-value="5" [ngClass]="{'ratedStar':this.heroe.powerstats.combat >80,'unratedStar':this.heroe.powerstats.combat <= 79}" >&#9733;</a>
-            </div>
-            </mat-list-item>
-          <br>
-          <mat-list-item role="listitem">Resistencia: {{ this.heroe.powerstats.durability  }}&nbsp;&nbsp;
-          <div class="ec-stars-wrapper">   
-            <a data-value="1" [ngClass]="{'ratedStar':this.heroe.powerstats.durability >10,'unratedStar':this.heroe.powerstats.durability == 0}" >&#9733;</a>
-            <a data-value="2" [ngClass]="{'ratedStar':this.heroe.powerstats.durability >20,'unratedStar':this.heroe.powerstats.durability <= 9}" >&#9733;</a>
-            <a data-value="3" [ngClass]="{'ratedStar':this.heroe.powerstats.durability >40,'unratedStar':this.heroe.powerstats.durability <= 29}" >&#9733;</a>
-            <a data-value="4" [ngClass]="{'ratedStar':this.heroe.powerstats.durability >70,'unratedStar':this.heroe.powerstats.durability <= 49}" >&#9733;</a>
-            <a data-value="5" [ngClass]="{'ratedStar':this.heroe.powerstats.durability >80,'unratedStar':this.heroe.powerstats.durability <= 79}" >&#9733;</a>
-          </div>
-          </mat-list-item>
-          <br>
-          <mat-list-item role="listitem">Inteligencia: {{ this.heroe.powerstats.intelligence}}&nbsp;&nbsp;
-            <div class="ec-stars-wrapper">
-              <a data-value="1" [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >10,'unratedStar':this.heroe.powerstats.intelligence == 0}" >&#9733;</a>
-              <a data-value="2" [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >20,'unratedStar':this.heroe.powerstats.intelligence <= 9}" >&#9733;</a>
-              <a data-value="3" [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >40,'unratedStar':this.heroe.powerstats.intelligence <= 29}" >&#9733;</a>
-              <a data-value="4" [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >70,'unratedStar':this.heroe.powerstats.intelligence <= 49}" >&#9733;</a>
-              <a data-value="5" [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >80,'unratedStar':this.heroe.powerstats.intelligence <= 79}" >&#9733;</a>
-          </div>
-        </mat-list-item>
-          <br>
-          <mat-list-item role="listitem">Poder: {{ this.heroe.powerstats.power}}&nbsp;&nbsp;
-            <div class="ec-stars-wrapper">
-              <a data-value="1" [ngClass]="{'ratedStar':this.heroe.powerstats.power >10,'unratedStar':this.heroe.powerstats.power == 0}" >&#9733;</a>
-              <a data-value="2" [ngClass]="{'ratedStar':this.heroe.powerstats.power >20,'unratedStar':this.heroe.powerstats.power <= 9}" >&#9733;</a>
-              <a data-value="3" [ngClass]="{'ratedStar':this.heroe.powerstats.power >40,'unratedStar':this.heroe.powerstats.power <= 29}" >&#9733;</a>
-              <a data-value="4" [ngClass]="{'ratedStar':this.heroe.powerstats.power >70,'unratedStar':this.heroe.powerstats.power <= 49}" >&#9733;</a>
-              <a data-value="5" [ngClass]="{'ratedStar':this.heroe.powerstats.power >80,'unratedStar':this.heroe.powerstats.power <= 79}" >&#9733;</a>
-          </div>
-          </mat-list-item>
-          <br>
-          <mat-list-item role="listitem">Velocidad: {{ this.heroe.powerstats.speed}}&nbsp;&nbsp;  
+        <mat-card-content>
+          <mat-card-title><strong> {{this.heroe.name}}</strong></mat-card-title>
+          <mat-card-subtitle><strong>Nombre: </strong> {{this.heroe.biography.fullname}}</mat-card-subtitle>
+          <mat-list role="list">
+            <mat-list-item role="listitem">Combate: {{ this.heroe.powerstats.combat}} &nbsp;&nbsp;
               <div class="ec-stars-wrapper">
-                <a data-value="1" [ngClass]="{'ratedStar':this.heroe.powerstats.speed >10,'unratedStar':this.heroe.powerstats.speed == 0}" >&#9733;</a>
-                <a data-value="2" [ngClass]="{'ratedStar':this.heroe.powerstats.speed >20,'unratedStar':this.heroe.powerstats.speed <= 9}" >&#9733;</a>
-                <a data-value="3" [ngClass]="{'ratedStar':this.heroe.powerstats.speed >40,'unratedStar':this.heroe.powerstats.speed <= 29}" >&#9733;</a>
-                <a data-value="4" [ngClass]="{'ratedStar':this.heroe.powerstats.speed >70,'unratedStar':this.heroe.powerstats.speed <= 49}" >&#9733;</a>
-                <a data-value="5" [ngClass]="{'ratedStar':this.heroe.powerstats.speed >80,'unratedStar':this.heroe.powerstats.speed <= 79}" >&#9733;</a>
-            </div>
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.combat >10,'unratedStar':this.heroe.powerstats.combat == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.combat >20,'unratedStar':this.heroe.powerstats.combat <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.combat >40,'unratedStar':this.heroe.powerstats.combat <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.combat >70,'unratedStar':this.heroe.powerstats.combat <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.combat >80,'unratedStar':this.heroe.powerstats.combat <= 79}">&#9733;</a>
+              </div>
             </mat-list-item>
-          <br>
-          <mat-list-item role="listitem">Fuerza: {{ this.heroe.powerstats.strength}}&nbsp;&nbsp;  
+            <br>
+            <mat-list-item role="listitem">Resistencia: {{ this.heroe.powerstats.durability }}&nbsp;&nbsp;
               <div class="ec-stars-wrapper">
-                <a data-value="1" [ngClass]="{'ratedStar':this.heroe.powerstats.strength >10,'unratedStar':this.heroe.powerstats.strength == 0}" >&#9733;</a>
-                <a data-value="2" [ngClass]="{'ratedStar':this.heroe.powerstats.strength >20,'unratedStar':this.heroe.powerstats.strength <= 9}" >&#9733;</a>
-                <a data-value="3" [ngClass]="{'ratedStar':this.heroe.powerstats.strength >40,'unratedStar':this.heroe.powerstats.strength <= 29}" >&#9733;</a>
-                <a data-value="4" [ngClass]="{'ratedStar':this.heroe.powerstats.strength >70,'unratedStar':this.heroe.powerstats.strength <= 49}" >&#9733;</a>
-                <a data-value="5" [ngClass]="{'ratedStar':this.heroe.powerstats.strength >80,'unratedStar':this.heroe.powerstats.strength <= 79}" >&#9733;</a>
-            </div>
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.durability >10,'unratedStar':this.heroe.powerstats.durability == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.durability >20,'unratedStar':this.heroe.powerstats.durability <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.durability >40,'unratedStar':this.heroe.powerstats.durability <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.durability >70,'unratedStar':this.heroe.powerstats.durability <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.durability >80,'unratedStar':this.heroe.powerstats.durability <= 79}">&#9733;</a>
+              </div>
+            </mat-list-item>
+            <br>
+            <mat-list-item role="listitem">Inteligencia: {{ this.heroe.powerstats.intelligence}}&nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >10,'unratedStar':this.heroe.powerstats.intelligence == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >20,'unratedStar':this.heroe.powerstats.intelligence <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >40,'unratedStar':this.heroe.powerstats.intelligence <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >70,'unratedStar':this.heroe.powerstats.intelligence <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.intelligence >80,'unratedStar':this.heroe.powerstats.intelligence <= 79}">&#9733;</a>
+              </div>
+            </mat-list-item>
+            <br>
+            <mat-list-item role="listitem">Poder: {{ this.heroe.powerstats.power}}&nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.power >10,'unratedStar':this.heroe.powerstats.power == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.power >20,'unratedStar':this.heroe.powerstats.power <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.power >40,'unratedStar':this.heroe.powerstats.power <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.power >70,'unratedStar':this.heroe.powerstats.power <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.power >80,'unratedStar':this.heroe.powerstats.power <= 79}">&#9733;</a>
+              </div>
+            </mat-list-item>
+            <br>
+            <mat-list-item role="listitem">Velocidad: {{ this.heroe.powerstats.speed}}&nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.speed >10,'unratedStar':this.heroe.powerstats.speed == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.speed >20,'unratedStar':this.heroe.powerstats.speed <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.speed >40,'unratedStar':this.heroe.powerstats.speed <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.speed >70,'unratedStar':this.heroe.powerstats.speed <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.speed >80,'unratedStar':this.heroe.powerstats.speed <= 79}">&#9733;</a>
+              </div>
+            </mat-list-item>
+            <br>
+            <mat-list-item role="listitem">Fuerza: {{ this.heroe.powerstats.strength}}&nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.strength >10,'unratedStar':this.heroe.powerstats.strength == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.strength >20,'unratedStar':this.heroe.powerstats.strength <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.strength >40,'unratedStar':this.heroe.powerstats.strength <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.strength >70,'unratedStar':this.heroe.powerstats.strength <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.heroe.powerstats.strength >80,'unratedStar':this.heroe.powerstats.strength <= 79}">&#9733;</a>
+              </div>
             </mat-list-item>
             <mat-list-item><strong>Total:</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{this.poderTotalH}}</mat-list-item>
-        </mat-list>
-   </mat-card-content>
-  </mat-card>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
     </mat-card-content>
   </mat-card-header>
 </mat-card>
-<mat-card  *ngIf="this.flag2 == true" class="col-md-6 bySide" >
-    <mat-card-header>
-      <img mat-card-image class="Avatar col-md-6" src="{{this.villan.images}}" alt="Photo {this.villan.name}}">
-      <mat-card-content class=" col-md-6" >
-        <mat-card class="hero-card bg-dark ">
+<mat-card *ngIf="this.flag2 == true" class="col-md-6 bySide"
+  [ngClass]="{'recuadroAccordeon':ganadorVillano,'recuadroNoAccordeon':!ganadorVillano}">
+  <mat-card-header>
+    <img mat-card-image class="Avatar col-md-6" src="{{this.villan.images}}" alt="{{this.villan.name}}"
+      [ngClass]="{'recuadroAccordeon':ganadorVillano,'recuadroNoAccordeon':!ganadorVillano}">
+    <mat-card-content class=" col-md-6">
+      <mat-card class="hero-card bg-dark ">
         <mat-card-content>
-          <mat-card-title ><strong> {{this.villan.name}}</strong></mat-card-title>
-          <mat-card-subtitle><strong>Nombre: </strong>  {{this.villan.biography.fullname}}</mat-card-subtitle>
+          <mat-card-title><strong> {{this.villan.name}}</strong></mat-card-title>
+          <mat-card-subtitle><strong>Nombre: </strong> {{this.villan.biography.fullname}}</mat-card-subtitle>
           <mat-list role="list">
             <mat-list-item role="listitem">Combate: {{ this.villan.powerstats.combat}} &nbsp;&nbsp;
               <div class="ec-stars-wrapper">
-                <a data-value="1" [ngClass]="{'ratedStar':this.villan.powerstats.combat >10,'unratedStar':this.villan.powerstats.combat == 0}" >&#9733;</a>
-                <a data-value="2" [ngClass]="{'ratedStar':this.villan.powerstats.combat >20,'unratedStar':this.villan.powerstats.combat <= 9}" >&#9733;</a>
-                <a data-value="3" [ngClass]="{'ratedStar':this.villan.powerstats.combat >40,'unratedStar':this.villan.powerstats.combat <= 29}" >&#9733;</a>
-                <a data-value="4" [ngClass]="{'ratedStar':this.villan.powerstats.combat >70,'unratedStar':this.villan.powerstats.combat <= 49}" >&#9733;</a>
-                <a data-value="5" [ngClass]="{'ratedStar':this.villan.powerstats.combat >80,'unratedStar':this.villan.powerstats.combat <= 79}" >&#9733;</a>
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.combat >10,'unratedStar':this.villan.powerstats.combat == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.combat >20,'unratedStar':this.villan.powerstats.combat <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.combat >40,'unratedStar':this.villan.powerstats.combat <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.combat >70,'unratedStar':this.villan.powerstats.combat <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.combat >80,'unratedStar':this.villan.powerstats.combat <= 79}">&#9733;</a>
               </div>
-              </mat-list-item>
+            </mat-list-item>
             <br>
-            <mat-list-item role="listitem">Resistencia: {{ this.villan.powerstats.durability  }}&nbsp;&nbsp;
-            <div class="ec-stars-wrapper">   
-              <a data-value="1" [ngClass]="{'ratedStar':this.villan.powerstats.durability >10,'unratedStar':this.villan.powerstats.durability == 0}" >&#9733;</a>
-              <a data-value="2" [ngClass]="{'ratedStar':this.villan.powerstats.durability >20,'unratedStar':this.villan.powerstats.durability <= 9}" >&#9733;</a>
-              <a data-value="3" [ngClass]="{'ratedStar':this.villan.powerstats.durability >40,'unratedStar':this.villan.powerstats.durability <= 29}" >&#9733;</a>
-              <a data-value="4" [ngClass]="{'ratedStar':this.villan.powerstats.durability >70,'unratedStar':this.villan.powerstats.durability <= 49}" >&#9733;</a>
-              <a data-value="5" [ngClass]="{'ratedStar':this.villan.powerstats.durability >80,'unratedStar':this.villan.powerstats.durability <= 79}" >&#9733;</a>
-            </div>
+            <mat-list-item role="listitem">Resistencia: {{ this.villan.powerstats.durability }}&nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.durability >10,'unratedStar':this.villan.powerstats.durability == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.durability >20,'unratedStar':this.villan.powerstats.durability <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.durability >40,'unratedStar':this.villan.powerstats.durability <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.durability >70,'unratedStar':this.villan.powerstats.durability <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.durability >80,'unratedStar':this.villan.powerstats.durability <= 79}">&#9733;</a>
+              </div>
             </mat-list-item>
             <br>
             <mat-list-item role="listitem">Inteligencia: {{ this.villan.powerstats.intelligence}}&nbsp;&nbsp;
               <div class="ec-stars-wrapper">
-                <a data-value="1" [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >10,'unratedStar':this.villan.powerstats.intelligence == 0}" >&#9733;</a>
-                <a data-value="2" [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >20,'unratedStar':this.villan.powerstats.intelligence <= 9}" >&#9733;</a>
-                <a data-value="3" [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >40,'unratedStar':this.villan.powerstats.intelligence <= 29}" >&#9733;</a>
-                <a data-value="4" [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >70,'unratedStar':this.villan.powerstats.intelligence <= 49}" >&#9733;</a>
-                <a data-value="5" [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >80,'unratedStar':this.villan.powerstats.intelligence <= 79}" >&#9733;</a>
-            </div>
-          </mat-list-item>
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >10,'unratedStar':this.villan.powerstats.intelligence == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >20,'unratedStar':this.villan.powerstats.intelligence <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >40,'unratedStar':this.villan.powerstats.intelligence <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >70,'unratedStar':this.villan.powerstats.intelligence <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.intelligence >80,'unratedStar':this.villan.powerstats.intelligence <= 79}">&#9733;</a>
+              </div>
+            </mat-list-item>
             <br>
             <mat-list-item role="listitem">Poder: {{ this.villan.powerstats.power}}&nbsp;&nbsp;
               <div class="ec-stars-wrapper">
-                <a data-value="1" [ngClass]="{'ratedStar':this.villan.powerstats.power >10,'unratedStar':this.villan.powerstats.power == 0}" >&#9733;</a>
-                <a data-value="2" [ngClass]="{'ratedStar':this.villan.powerstats.power >20,'unratedStar':this.villan.powerstats.power <= 9}" >&#9733;</a>
-                <a data-value="3" [ngClass]="{'ratedStar':this.villan.powerstats.power >40,'unratedStar':this.villan.powerstats.power <= 29}" >&#9733;</a>
-                <a data-value="4" [ngClass]="{'ratedStar':this.villan.powerstats.power >70,'unratedStar':this.villan.powerstats.power <= 49}" >&#9733;</a>
-                <a data-value="5" [ngClass]="{'ratedStar':this.villan.powerstats.power >80,'unratedStar':this.villan.powerstats.power <= 79}" >&#9733;</a>
-            </div>
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.power >10,'unratedStar':this.villan.powerstats.power == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.power >20,'unratedStar':this.villan.powerstats.power <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.power >40,'unratedStar':this.villan.powerstats.power <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.power >70,'unratedStar':this.villan.powerstats.power <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.power >80,'unratedStar':this.villan.powerstats.power <= 79}">&#9733;</a>
+              </div>
             </mat-list-item>
             <br>
-            <mat-list-item role="listitem">Velocidad: {{ this.villan.powerstats.speed}}&nbsp;&nbsp;  
-                <div class="ec-stars-wrapper">
-                  <a data-value="1" [ngClass]="{'ratedStar':this.villan.powerstats.speed >10,'unratedStar':this.villan.powerstats.speed == 0}" >&#9733;</a>
-                  <a data-value="2" [ngClass]="{'ratedStar':this.villan.powerstats.speed >20,'unratedStar':this.villan.powerstats.speed <= 9}" >&#9733;</a>
-                  <a data-value="3" [ngClass]="{'ratedStar':this.villan.powerstats.speed >40,'unratedStar':this.villan.powerstats.speed <= 29}" >&#9733;</a>
-                  <a data-value="4" [ngClass]="{'ratedStar':this.villan.powerstats.speed >70,'unratedStar':this.villan.powerstats.speed <= 49}" >&#9733;</a>
-                  <a data-value="5" [ngClass]="{'ratedStar':this.villan.powerstats.speed >80,'unratedStar':this.villan.powerstats.speed <= 79}" >&#9733;</a>
+            <mat-list-item role="listitem">Velocidad: {{ this.villan.powerstats.speed}}&nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.speed >10,'unratedStar':this.villan.powerstats.speed == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.speed >20,'unratedStar':this.villan.powerstats.speed <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.speed >40,'unratedStar':this.villan.powerstats.speed <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.speed >70,'unratedStar':this.villan.powerstats.speed <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.speed >80,'unratedStar':this.villan.powerstats.speed <= 79}">&#9733;</a>
               </div>
-              </mat-list-item>
+            </mat-list-item>
             <br>
-            <mat-list-item role="listitem">Fuerza: {{ this.villan.powerstats.strength}}&nbsp;&nbsp;  
-                <div class="ec-stars-wrapper">
-                  <a data-value="1" [ngClass]="{'ratedStar':this.villan.powerstats.strength >10,'unratedStar':this.villan.powerstats.strength == 0}" >&#9733;</a>
-                  <a data-value="2" [ngClass]="{'ratedStar':this.villan.powerstats.strength >20,'unratedStar':this.villan.powerstats.strength <= 9}" >&#9733;</a>
-                  <a data-value="3" [ngClass]="{'ratedStar':this.villan.powerstats.strength >40,'unratedStar':this.villan.powerstats.strength <= 29}" >&#9733;</a>
-                  <a data-value="4" [ngClass]="{'ratedStar':this.villan.powerstats.strength >70,'unratedStar':this.villan.powerstats.strength <= 49}" >&#9733;</a>
-                  <a data-value="5" [ngClass]="{'ratedStar':this.villan.powerstats.strength >80,'unratedStar':this.villan.powerstats.strength <= 79}" >&#9733;</a>
+            <mat-list-item role="listitem">Fuerza: {{ this.villan.powerstats.strength}}&nbsp;&nbsp;
+              <div class="ec-stars-wrapper">
+                <a data-value="1"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.strength >10,'unratedStar':this.villan.powerstats.strength == 0}">&#9733;</a>
+                <a data-value="2"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.strength >20,'unratedStar':this.villan.powerstats.strength <= 9}">&#9733;</a>
+                <a data-value="3"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.strength >40,'unratedStar':this.villan.powerstats.strength <= 29}">&#9733;</a>
+                <a data-value="4"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.strength >70,'unratedStar':this.villan.powerstats.strength <= 49}">&#9733;</a>
+                <a data-value="5"
+                  [ngClass]="{'ratedStar':this.villan.powerstats.strength >80,'unratedStar':this.villan.powerstats.strength <= 79}">&#9733;</a>
               </div>
-              </mat-list-item>
-              <mat-list-item><strong>Total:</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{this.poderTotalV}}</mat-list-item>
+            </mat-list-item>
+            <mat-list-item><strong>Total:</strong> &nbsp;&nbsp;&nbsp;&nbsp; {{this.poderTotalV}}</mat-list-item>
           </mat-list>
-     </mat-card-content>
-    </mat-card>
-      </mat-card-content>
-    </mat-card-header>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card-header>
 </mat-card>
-
-  
-

@@ -3,8 +3,7 @@
   height: 50px;
   border-radius: 50%;
 }
-.cardLeft{
-
+.cardLeft {
   margin-left: 50px;
 }
 .Avatar {
@@ -19,31 +18,39 @@
 }
 
 .ec-stars-wrapper {
-	/* Espacio entre los inline-block (los hijos, los `a`) 
+  /* Espacio entre los inline-block (los hijos, los `a`) 
 	   http://ksesocss.blogspot.com/2012/03/display-inline-block-y-sus-empeno-en.html */
-	font-size: 0;
-	/* Podríamos quitarlo, 
+  font-size: 0;
+  /* Podríamos quitarlo, 
 		pero de esta manera (siempre que no le demos padding), 
 		sólo aplicará la regla .ec-stars-wrapper:hover a cuando
 		también se esté haciendo hover a alguna estrella */
-	display: inline-block;
+  display: inline-block;
 }
 .ec-stars-wrapper a {
-	text-decoration: none;
-	display: inline-block;
-	/* Volver a dar tamaño al texto */
-	font-size: 32px;
-	font-size: 2rem;
-	
-	
+  text-decoration: none;
+  display: inline-block;
+  /* Volver a dar tamaño al texto */
+  font-size: 32px;
+  font-size: 2rem;
 }
-.ratedStar{
-	color: yellow;
+.ratedStar {
+  color: yellow;
 }
-.unratedStar{
-	color:gray;
+.unratedStar {
+  color: gray;
 }
 
-.bySide{
+.bySide {
   display: inline-block;
+}
+
+.recuadroAccordeon {
+  padding: 10px;
+  border: 5px solid yellow;
+  /* background-color: darkslateblue */
+}
+
+.recuadroNoAccordeon {
+  /* background-color: darkslateblue */
 }

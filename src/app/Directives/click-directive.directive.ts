@@ -1,10 +1,16 @@
-import { Directive } from '@angular/core';
+
+import { Directive, ElementRef, HostListener } from "@angular/core";
 
 @Directive({
   selector: '[appClickDirective]'
 })
 export class ClickDirectiveDirective {
 
-  constructor() { }
+  constructor(private eRef: ElementRef) {}
+
+  
+  @HostListener("click") showBorder() {
+    this.eRef.nativeElement.classList.add("recuadroAccordeon");
+  }
 
 }
