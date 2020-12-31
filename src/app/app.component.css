@@ -1,0 +1,7 @@
+.Labels{
+  color: aliceblue;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

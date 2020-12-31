@@ -1,14 +1,25 @@
 .eql {
-  height: 700px;
-  width: 1110px;
+  height: 600px;
+  width: 800px;
 }
 
 .back {
-  background-image: url("../../../../assets/img/background.jpg");
-  background-size: cover;
+  background-image: url("../../../../assets/img/background.jpg") !important;
+  
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
+  background-repeat: no-repeat !important;
+  width: 100% !important;
+  height: 90% !important; 
+  margin: 0;
+
+  
+}
+.back2{
+  box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
 }
 
 
@@ -34,4 +45,25 @@
 
   display:none;
 }
+.bySide{
+  display: inline-block !important;
+}
+.leftFloat{
+  float: left;
+  width: 330px;
+}
+.rigthAbsolute{
+  position: absolute;
+  right: 250px;
 
+}
+.tabUser{
+  height: 300px;
+  width: 300px;
+}
+.tabIcon{
+  margin-right: 8px;
+}
+.mat-tab-labels{
+  width: 100px !important;
+}

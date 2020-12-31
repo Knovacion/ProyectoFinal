@@ -34,6 +34,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
+import { MatTabsModule } from '@angular/material/tabs';
 
 //Toastgit
 import { ToastrModule } from "ngx-toastr";
@@ -83,7 +84,8 @@ import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    MatTabsModule
     
   ],
   providers: [],
