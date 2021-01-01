@@ -10,17 +10,29 @@
       </span>
       </div>
       </div>
-
-
-      
+ 
+ <div class="" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">  
 <mat-accordion >
-  <mat-expansion-panel *ngFor="let pj of this.heroes" hideToggle appMouseDirective>
-    <mat-expansion-panel-header >
+  <mat-expansion-panel *ngFor="let pj of this.heroes index as i" hideToggle appMouseDirective>
+    <mat-expansion-panel-header #expansionPanel (click)="expansionPanel._toggle()">
       <mat-panel-title>
         <img class="ClassImagenRadio" src="{{pj.images}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}</p>
       </mat-panel-title>
       <mat-panel-description style="text-align:left">
-        {{pj.biography.fullname}}
+        <div class="col-md-11" (click)="expansionPanel._toggle()">
+          {{pj.biography.fullname}}
+        </div>
+        <div class="col-1">
+          <div class="example-button-row">
+            <div class="example-flex-container">
+              <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                [ngClass]="{'favorito':pj.favorito == true,'noFavorito':pj.favorito == false}"
+                (click)="addFavorito(pj.id,pj.favorito, i)" type="button">
+                <mat-icon>star</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-card style="align-items: center;">
@@ -152,4 +164,9 @@
     </mat-card>
   </mat-expansion-panel>
 </mat-accordion>
-<button mat-raised-button color="accent" (click)="siguiente()">Siguiente</button>
+</div>
+<button [ngClass]="'no-hidden'" type="button" *ngIf="showGoUpButton" class="btn btn-dark" (click)="scrollTop()">
+  <mat-icon aria-hidden="false" aria-label="Example home icon">arrow_circle_up</mat-icon>
+</button>
+
+</form>
