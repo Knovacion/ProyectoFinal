@@ -133,7 +133,7 @@ export class HeroesComponent implements OnInit {
     this.heroes = [];
     for (let i = 0; i <= heroArr.length; i++) {
       objHeroe = heroArr[i];
-        if (objHeroe.biography["alignment"] == "good") {
+        if (objHeroe.biography.alignment == "good") {
           this.heroe = new Heroe();
           // console.log(objHeroe.name);
           this.heroe.id = objHeroe.id;

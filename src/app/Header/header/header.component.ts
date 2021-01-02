@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { FirestoreService } from "../../Body/Services/firestore.service";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
@@ -9,13 +9,20 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
+public txtCorreo:string;
+
+
   constructor(
     private firestoreService: FirestoreService,
     private toastr: ToastrService,
     private router: Router
   ) {}
   public uid: string;
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.txtCorreo =localStorage.getItem("email");
+    console.log(localStorage.getItem("email"))
+  }
 
   public CerrarSesion() {
     this.firestoreService
@@ -59,4 +66,5 @@ export class HeaderComponent implements OnInit {
       return false;
     }
   }
+
 }

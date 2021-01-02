@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   @Output() envioParametro = new EventEmitter<string>();
+  @Output() envioCorreo = new EventEmitter<string>();
   public uid: string;
 
   ngOnInit() {}
@@ -66,6 +67,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.envioParametro.emit(this.uid);
+        this.envioCorreo.emit(this.loginForm.value.txtCorreo);
       })
       .catch((resp) => {
         console.error(resp);

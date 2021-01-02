@@ -2,12 +2,12 @@
 <div class="container-fluid back back2 bg-dark" >
  <br>
  
-  <mat-tab-group class="col-md-2 bg-dark leftFloat">
+  <mat-tab-group class="col-md-2 bg-dark leftFloat mat-elevation-z4" [hidden] = "SesionIiniciada()">
     <mat-tab label="Iniciar Sesion" style="width: 150px;">
       <ng-template mat-tab-label>
         <mat-icon class="tabIcon">account_circle</mat-icon>
       </ng-template>  
-       <app-login (envioParametro)="reciboUid($event)"></app-login>
+       <app-login (envioParametro)="reciboUid($event)" (envioCorreo)="reciboMail($event)"></app-login>
     </mat-tab>
     <mat-tab label="Registrate"> 
       <ng-template mat-tab-label>

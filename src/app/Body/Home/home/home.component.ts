@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
 
   public inicioSesionCorrecto: boolean = false;
   public uid: string;
+  public txtCorreo:string;
   ngOnInit() {
     console.log("uid", this.uid);
     this.uid = localStorage.getItem("uid");
@@ -17,6 +18,14 @@ export class HomeComponent implements OnInit {
       this.inicioSesionCorrecto = true;
     } else {
       this.inicioSesionCorrecto = false;
+    }
+  }
+
+  reciboMail(email:string){
+    this.txtCorreo = email;
+    if(this.txtCorreo != undefined)
+    {
+      localStorage.setItem("email", this.txtCorreo)
     }
   }
 
@@ -29,4 +38,13 @@ export class HomeComponent implements OnInit {
       this.inicioSesionCorrecto = false;
     }
   }
+
+  SesionIiniciada() {
+    this.uid = localStorage.getItem("uid");
+    if (this.uid != undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }  
 }
