@@ -21,7 +21,6 @@ export class VillanosComponent implements OnInit {
   public lstFavo: Favoritos[] = [];
 
   public lstHeroeDefinitiva: Heroe[] = [];
-
   private finishPage = 5;
   private actualPage: number;
   private contadorLinea: number = 0;
@@ -115,7 +114,7 @@ export class VillanosComponent implements OnInit {
   }
 
   searchByName() {
-    console.log('entre');
+    console.log("entre");
     this.getHeroByName(this.SearchForm.value.txtSearch);
   }
 
@@ -244,18 +243,20 @@ export class VillanosComponent implements OnInit {
     document.documentElement.scrollTop = 0; // Other
   }
 
-
-  @HostListener('window:scroll', [])
+  @HostListener("window:scroll", [])
   onWindowScroll() {
-    if (( window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop) > this.showScrollHeight) {
-      this.showGoUpButton = true;
-    } else if ( this.showGoUpButton &&
+    if (
       (window.pageYOffset ||
         document.documentElement.scrollTop ||
-        document.body.scrollTop)
-      < this.hideScrollHeight) {
+        document.body.scrollTop) > this.showScrollHeight
+    ) {
+      this.showGoUpButton = true;
+    } else if (
+      this.showGoUpButton &&
+      (window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop) < this.hideScrollHeight
+    ) {
       this.showGoUpButton = false;
     }
   }

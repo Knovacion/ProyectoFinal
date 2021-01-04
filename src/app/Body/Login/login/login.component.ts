@@ -48,6 +48,8 @@ export class LoginComponent implements OnInit {
           resp.code == undefined ||
           resp.code == null
         ) {
+
+          localStorage.setItem("email",this.loginForm.value.txtCorreo);
           this.toastr.success(
             "Bienvenido " + this.loginForm.value.txtCorreo + ".",
             "Proceso correcto."

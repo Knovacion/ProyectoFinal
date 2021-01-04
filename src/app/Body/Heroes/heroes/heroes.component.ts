@@ -18,8 +18,6 @@ import { FirestoreService } from "../../Services/firestore.service";
   styleUrls: ["./heroes.component.css"],
 })
 export class HeroesComponent implements OnInit {
-
-
   public heroe: Heroe = new Heroe();
   public heroes: Heroe[] = [];
   public panelOpenState = false;
@@ -38,14 +36,15 @@ export class HeroesComponent implements OnInit {
   private showScrollHeight = 400;
   private hideScrollHeight = 200;
 
-  constructor(public heroApi: HeroesService,
+  constructor(
+    public heroApi: HeroesService,
     private toastr: ToastrService,
     private firestoreService: FirestoreService,
-    private router: Router) 
-    {
-      this.actualPage = 1;
-      this.showGoUpButton = false;
-    }
+    private router: Router
+  ) {
+    this.actualPage = 1;
+    this.showGoUpButton = false;
+  }
 
   ngOnInit() {
     this.getFavoritos();
@@ -131,64 +130,62 @@ export class HeroesComponent implements OnInit {
   processHeroArray(heroArr: Heroe[]) {
     let objHeroe: Heroe;
     this.heroes = [];
-    for (let i = 0; i <= heroArr.length; i++) {
+    for (let i = 0; i < heroArr.length; i++) {
       objHeroe = heroArr[i];
-        if (objHeroe.biography.alignment == "good") {
-          this.heroe = new Heroe();
-          // console.log(objHeroe.name);
-          this.heroe.id = objHeroe.id;
-          this.lstFavo.forEach((fav) => {
-            if (fav.idHeroe == this.heroe.id) {
-              this.heroe.favorito = true;
-            }
-          });
-          this.contenedor = "";
-          this.heroe.images =
-            objHeroe.images === undefined ? objHeroe.image["url"] : objHeroe.images["md"];
-          this.heroe.name = objHeroe.name;
-          this.heroe.appearance = objHeroe.appearance;
-          this.heroe.appearance.eyecolor = objHeroe.appearance["eye-color"];
-          this.heroe.appearance.gender = objHeroe.appearance["gender"];
-          this.heroe.appearance.haircolor = objHeroe.appearance["hair-color"];
-          this.heroe.appearance.height = objHeroe.appearance["height"];
-          this.heroe.appearance.race = objHeroe.appearance["race"];
-          this.heroe.appearance.weight = objHeroe.appearance["weight"];
-          this.heroe.biography = objHeroe.biography;
-          this.heroe.biography.fullname = objHeroe.biography["full-name"];
-          this.heroe.biography.aliases = objHeroe.biography["aliases"];
-          this.heroe.biography.alignment = objHeroe.biography["alignment"];
+      if (objHeroe.biography["alignment"] == "good") {
+        this.heroe = new Heroe();
+        // console.log(objHeroe.name);
+        this.heroe.id = objHeroe.id;
+        this.lstFavo.forEach((fav) => {
+          if (fav.idHeroe == this.heroe.id) {
+            this.heroe.favorito = true;
+          }
+        });
+        this.contenedor = "";
+        this.heroe.images =
+          objHeroe.images === undefined
+            ? objHeroe.image["url"]
+            : objHeroe.images["md"];
+        this.heroe.name = objHeroe.name;
+        this.heroe.appearance = objHeroe.appearance;
+        this.heroe.appearance.eyecolor = objHeroe.appearance["eye-color"];
+        this.heroe.appearance.gender = objHeroe.appearance["gender"];
+        this.heroe.appearance.haircolor = objHeroe.appearance["hair-color"];
+        this.heroe.appearance.height = objHeroe.appearance["height"];
+        this.heroe.appearance.race = objHeroe.appearance["race"];
+        this.heroe.appearance.weight = objHeroe.appearance["weight"];
+        this.heroe.biography = objHeroe.biography;
+        this.heroe.biography.fullname = objHeroe.biography["full-name"];
+        this.heroe.biography.aliases = objHeroe.biography["aliases"];
+        this.heroe.biography.alignment = objHeroe.biography["alignment"];
 
-          this.heroe.biography.alteregos = objHeroe.biography["alter-egos"];
-          this.heroe.biography.firstappearance =
-            objHeroe.biography["first-appearance"];
-          this.heroe.biography.placeofbirth = objHeroe.biography["place-of-birth"];
-          this.heroe.biography.publisher = objHeroe.biography["publisher"];
-          this.heroe.connections = objHeroe.connections;
+        this.heroe.biography.alteregos = objHeroe.biography["alter-egos"];
+        this.heroe.biography.firstappearance =
+          objHeroe.biography["first-appearance"];
+        this.heroe.biography.placeofbirth =
+          objHeroe.biography["place-of-birth"];
+        this.heroe.biography.publisher = objHeroe.biography["publisher"];
+        this.heroe.connections = objHeroe.connections;
 
-          this.heroe.connections.groupAffiliation =
-            this.heroe.connections["groupAffiliation"] === undefined
-              ? this.splitterFunction(
-                  this.heroe.connections["group-affiliation"]
-                )
-              : this.splitterFunction(
-                  this.heroe.connections["groupAffiliation"]
-                );
-          this.heroe.connections.relatives = objHeroe.connections["relatives"];
+        this.heroe.connections.groupAffiliation =
+          this.heroe.connections["groupAffiliation"] === undefined
+            ? this.splitterFunction(this.heroe.connections["group-affiliation"])
+            : this.splitterFunction(this.heroe.connections["groupAffiliation"]);
+        this.heroe.connections.relatives = objHeroe.connections["relatives"];
 
-          this.heroe.powerstats = objHeroe.powerstats;
-          this.heroe.powerstats.combat = objHeroe.powerstats.combat;
-          this.heroe.powerstats.durability = objHeroe.powerstats.durability;
-          this.heroe.powerstats.intelligence = objHeroe.powerstats.intelligence;
-          this.heroe.powerstats.power = objHeroe.powerstats.power;
-          this.heroe.powerstats.speed = objHeroe.powerstats.speed;
-          this.heroe.powerstats.strength = objHeroe.powerstats.strength;
-          this.heroe.work = objHeroe.work;
-          this.heroe.work.base = objHeroe.work.base;
-          this.heroe.work.occupation = objHeroe.work.occupation;
-          this.contenedor = objHeroe.biography["aliases"];
-          this.heroes.push(this.heroe);
-
-      }    
+        this.heroe.powerstats = objHeroe.powerstats;
+        this.heroe.powerstats.combat = objHeroe.powerstats.combat;
+        this.heroe.powerstats.durability = objHeroe.powerstats.durability;
+        this.heroe.powerstats.intelligence = objHeroe.powerstats.intelligence;
+        this.heroe.powerstats.power = objHeroe.powerstats.power;
+        this.heroe.powerstats.speed = objHeroe.powerstats.speed;
+        this.heroe.powerstats.strength = objHeroe.powerstats.strength;
+        this.heroe.work = objHeroe.work;
+        this.heroe.work.base = objHeroe.work.base;
+        this.heroe.work.occupation = objHeroe.work.occupation;
+        this.contenedor = objHeroe.biography["aliases"];
+        this.heroes.push(this.heroe);
+      }
     }
     return this.heroes;
   }
@@ -249,20 +246,21 @@ export class HeroesComponent implements OnInit {
     document.documentElement.scrollTop = 0; // Other
   }
 
-
-  @HostListener('window:scroll', [])
+  @HostListener("window:scroll", [])
   onWindowScroll() {
-    if (( window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop) > this.showScrollHeight) {
-      this.showGoUpButton = true;
-    } else if ( this.showGoUpButton &&
+    if (
       (window.pageYOffset ||
         document.documentElement.scrollTop ||
-        document.body.scrollTop)
-      < this.hideScrollHeight) {
+        document.body.scrollTop) > this.showScrollHeight
+    ) {
+      this.showGoUpButton = true;
+    } else if (
+      this.showGoUpButton &&
+      (window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop) < this.hideScrollHeight
+    ) {
       this.showGoUpButton = false;
     }
   }
-  
 }

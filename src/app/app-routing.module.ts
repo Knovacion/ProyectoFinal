@@ -12,16 +12,17 @@ const routes: Routes = [
   { path: "home", component: HomeComponent },
   {
     path: "heroes",
-    component: HeroesComponent, //canActivate: [LoginGuardGuard],
+    component: HeroesComponent, canActivate: [LoginGuardGuard],
   },
   {
     path: "villanos",
     component: VillanosComponent,
-    // canActivate: [LoginGuardGuard],
+    canActivate: [LoginGuardGuard],
   },
   {
     path: "versus",
     component: VersusComponent,
+    canActivate: [LoginGuardGuard],
   },
 
   { path: "", redirectTo: "home", pathMatch: "full" },
