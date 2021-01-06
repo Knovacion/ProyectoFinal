@@ -11,6 +11,8 @@ import { Heroe } from "src/app/Models/heroe";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { FirestoreService } from "../../Services/firestore.service";
+import { Biografia } from "src/app/Models/biografia";
+import { Apariencia } from "src/app/Models/apariencia";
 
 @Component({
   selector: "app-heroes",
@@ -105,6 +107,7 @@ export class HeroesComponent implements OnInit {
               );
             }
             this.lstHeroeDefinitiva = this.heroes;
+            console.log("definitiva", this.lstHeroeDefinitiva)
           } else {
             this.toastr.warning(
               "No se han encontrado resultados para su búsqueda",
@@ -133,20 +136,25 @@ export class HeroesComponent implements OnInit {
     for (let i = 0; i < heroArr.length; i++) {
       objHeroe = heroArr[i];
       if (objHeroe.biography["alignment"] == "good") {
+
+        if(this.SearchForm.value.txtSearch == undefined)
+        {
+          this.lstFavo.forEach((fav) => {
+            if (fav.idHeroe == this.heroe.id) {
+              this.heroe.favorito = true;
+            }
+          });
+        }
         this.heroe = new Heroe();
         // console.log(objHeroe.name);
         this.heroe.id = objHeroe.id;
-        this.lstFavo.forEach((fav) => {
-          if (fav.idHeroe == this.heroe.id) {
-            this.heroe.favorito = true;
-          }
-        });
         this.contenedor = "";
         this.heroe.images =
           objHeroe.images === undefined
             ? objHeroe.image["url"]
             : objHeroe.images["md"];
         this.heroe.name = objHeroe.name;
+        this.heroe.appearance = new Apariencia();
         this.heroe.appearance = objHeroe.appearance;
         this.heroe.appearance.eyecolor = objHeroe.appearance["eye-color"];
         this.heroe.appearance.gender = objHeroe.appearance["gender"];
@@ -154,6 +162,7 @@ export class HeroesComponent implements OnInit {
         this.heroe.appearance.height = objHeroe.appearance["height"];
         this.heroe.appearance.race = objHeroe.appearance["race"];
         this.heroe.appearance.weight = objHeroe.appearance["weight"];
+        this.heroe.biography = new Biografia();
         this.heroe.biography = objHeroe.biography;
         this.heroe.biography.fullname = objHeroe.biography["full-name"];
         this.heroe.biography.aliases = objHeroe.biography["aliases"];
@@ -183,8 +192,12 @@ export class HeroesComponent implements OnInit {
         this.heroe.work = objHeroe.work;
         this.heroe.work.base = objHeroe.work.base;
         this.heroe.work.occupation = objHeroe.work.occupation;
+        this.contenedor = [];
         this.contenedor = objHeroe.biography["aliases"];
+
+      
         this.heroes.push(this.heroe);
+       
       }
     }
     return this.heroes;

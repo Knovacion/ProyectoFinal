@@ -53,7 +53,7 @@
                           </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-list role="list">
-                          <mat-list-item role="listitem">Color Ojos: {{this.heroe.appearance.eyecolor}}
+                          <mat-list-item role="listitem">Color Ojos: {{this.lstHeroeDefinitiva[i].appearance.eyecolor}}
                           </mat-list-item>
                           <mat-list-item role="listitem">Genero: {{this.heroe.appearance.gender}}</mat-list-item>
                           <mat-list-item role="listitem">Color Cabello: {{this.heroe.appearance.haircolor}}
@@ -182,3 +182,169 @@
   </button>
 
 </form>
+
+<!-- <div *ngIf= "this.SearchForm.value.txtSearch != undefined">
+  <mat-accordion>
+   <mat-expansion-panel *ngFor="let pj of this.lstHeroeDefinitiva index as i" hideToggle appMouseDirective>
+     <mat-expansion-panel-header #expansionPanel (click)="expansionPanel._toggle()">
+       <mat-panel-title>
+         <img class="ClassImagenRadio" src="{{pj.images}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}
+         </p>
+       </mat-panel-title>
+       <mat-panel-description style="text-align:left">
+         <div class="col-md-11" (click)="expansionPanel._toggle()">
+           {{pj.biography.fullname}}
+         </div>
+         <div class="col-1">
+           <div class="example-button-row">
+             <div class="example-flex-container">
+               <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon"
+                 [ngClass]="{'favorito':pj.favorito == true,'noFavorito':pj.favorito == false}"
+                 (click)="addFavorito(pj.id,pj.favorito, i)" type="button">
+                 <mat-icon>star</mat-icon>
+               </button>
+             </div>
+           </div>
+         </div>
+       </mat-panel-description>
+     </mat-expansion-panel-header>
+     <mat-card style="align-items: center;">
+       <mat-card-header>
+         <img mat-card-image class="Avatar" src="{{pj.images}}" alt="Photo {{pj.name}}">
+         <mat-card-content class="cardLeft col-md-6">
+           <mat-card class="hero-card bg-dark ">
+             <mat-card-content>
+               <mat-card-title><strong> {{pj.name}}</strong></mat-card-title>
+               <mat-card-subtitle><strong>Nombre: </strong> {{pj.biography.fullname}}</mat-card-subtitle>
+               <mat-card-subtitle>
+                 <mat-accordion>
+                   <mat-expansion-panel hideToggle appMouseDirective>
+                     <mat-expansion-panel-header>
+                       <mat-panel-title>
+                         Apariencia
+                       </mat-panel-title>
+                     </mat-expansion-panel-header>
+                     <mat-list role="list">
+                       <mat-list-item role="listitem">Color Ojos: {{this.heroes[i].appearance.eyecolor}}
+                       </mat-list-item>
+                       <mat-list-item role="listitem">Genero: {{this.heroes[i].appearance.gender}}</mat-list-item>
+                       <mat-list-item role="listitem">Color Cabello: {{this.heroes[i].appearance.haircolor}}
+                       </mat-list-item>
+                       <mat-list-item role="listitem">Estatura: {{this.heroes[i].appearance.height[1]}}</mat-list-item>
+                     </mat-list>
+                   </mat-expansion-panel>
+                 </mat-accordion>
+               </mat-card-subtitle>
+               <mat-card-subtitle>
+                 <mat-accordion>
+                   <mat-expansion-panel hideToggle appMouseDirective>
+                     <mat-expansion-panel-header>
+                       <mat-panel-title>
+                         Biografia
+                       </mat-panel-title>
+                     </mat-expansion-panel-header>
+                     <mat-list role="list">
+                       <mat-list-item role="listitem">Nombre {{this.heroes[i].biography.fullname}}
+                       </mat-list-item>
+                     </mat-list>
+                     <mat-accordion>
+                       <mat-expansion-panel hideToggle appMouseDirective>
+                         <mat-expansion-panel-header>
+                           <mat-panel-title>
+                             Alias
+                           </mat-panel-title>
+                         </mat-expansion-panel-header>
+                         <mat-list-item role="listitem" *ngFor="let bio of  pj.biography.aliases">
+                           <mat-list role="list" style="font-size: 12px;">{{bio}}</mat-list>
+                         </mat-list-item>
+                       </mat-expansion-panel>
+                     </mat-accordion>
+
+                     <mat-list role="list">
+                       <mat-list-item role="listitem">Alineacion: {{ this.heroes[i].biography.alignment }}
+                       </mat-list-item>
+                       <mat-list-item role="listitem">Alter-Egos: {{ this.heroes[i].biography.alteregos }}
+                       </mat-list-item>
+                       <mat-list-item role="listitem">Primera Aparicion: {{this.heroes[i].biography.firstappearance }}
+                       </mat-list-item>
+                       <mat-list-item role="listitem">Nacimiento: {{this.heroes[i].biography.placeofbirth}}
+                       </mat-list-item>
+                       <mat-list-item role="listitem">Publicación: {{this.heroes[i].biography.publisher}}
+                       </mat-list-item>
+                     </mat-list>
+                   </mat-expansion-panel>
+                 </mat-accordion>
+               </mat-card-subtitle>
+               <mat-card-subtitle>
+                 <mat-accordion>
+                   <mat-expansion-panel hideToggle appMouseDirective>
+                     <mat-expansion-panel-header>
+                       <mat-panel-title>
+                         Conexiones
+                       </mat-panel-title>
+                       <br>
+                     </mat-expansion-panel-header>
+                     <mat-accordion>
+                       <mat-expansion-panel hideToggle appMouseDirective>
+                         <mat-expansion-panel-header>
+                           <mat-panel-title>
+                             Afiliaciones
+                           </mat-panel-title>
+                         </mat-expansion-panel-header>
+                         <mat-list-item role="listitem" *ngFor="let afil of this.heroe.connections.groupAffiliation">
+                           <mat-list role="list" style="font-size: 12px;">{{afil}}</mat-list>
+                         </mat-list-item>
+                       </mat-expansion-panel>
+                       <br>
+                     </mat-accordion>
+                     <mat-list role="list">
+                       <mat-list-item role="listitem">Parientes: {{ this.heroes[i].connections.relatives }}
+                       </mat-list-item>
+                     </mat-list>
+                   </mat-expansion-panel>
+                 </mat-accordion>
+               </mat-card-subtitle>
+               <mat-card-subtitle>
+                 <mat-accordion>
+                   <mat-expansion-panel hideToggle appMouseDirective>
+                     <mat-expansion-panel-header>
+                       <mat-panel-title>
+                         Estadisticas de Poder
+                       </mat-panel-title>
+                     </mat-expansion-panel-header>
+                     <mat-list role="list">
+                       <mat-list-item role="listitem">Combate: {{ this.heroes[i].powerstats.combat}}</mat-list-item>
+                       <mat-list-item role="listitem">Resistencia: {{ this.heroes[i].powerstats.durability }}
+                       </mat-list-item>
+                       <mat-list-item role="listitem">Inteligencia: {{ this.heroes[i].powerstats.intelligence}}
+                       </mat-list-item>
+                       <mat-list-item role="listitem">Poder: {{ this.heroes[i].powerstats.power}}</mat-list-item>
+                       <mat-list-item role="listitem">Velocidad: {{ this.heroes[i].powerstats.speed}}</mat-list-item>
+                       <mat-list-item role="listitem">Fuerza: {{ this.heroes[i].powerstats.strength}}</mat-list-item>
+                     </mat-list>
+                   </mat-expansion-panel>
+                 </mat-accordion>
+               </mat-card-subtitle>
+               <mat-card-subtitle>
+                 <mat-accordion>
+                   <mat-expansion-panel hideToggle appMouseDirective>
+                     <mat-expansion-panel-header>
+                       <mat-panel-title>
+                         Trabajo
+                       </mat-panel-title>
+                     </mat-expansion-panel-header>
+                     <mat-list role="list">
+                       <mat-list-item role="listitem">Ubicación: {{ this.heroes[i].work.base}}</mat-list-item>
+                       <mat-list-item role="listitem">Ocupación: {{ this.heroes[i].work.occupation }}</mat-list-item>
+                     </mat-list>
+                   </mat-expansion-panel>
+                 </mat-accordion>
+               </mat-card-subtitle>
+             </mat-card-content>
+           </mat-card>
+         </mat-card-content>
+       </mat-card-header>
+     </mat-card>
+   </mat-expansion-panel>
+ </mat-accordion>
+ </div> -->

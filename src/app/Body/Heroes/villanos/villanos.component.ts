@@ -101,7 +101,11 @@ export class VillanosComponent implements OnInit {
                 "Alerta"
               );
             }
-            this.lstHeroeDefinitiva = this.heroes;
+            this.heroes.forEach(her => {
+              this.lstHeroeDefinitiva.push(her);
+            });
+
+           // this.lstHeroeDefinitiva = this.heroes;
           } else {
             this.toastr.warning(
               "No se han encontrado resultados para su búsqueda",
@@ -136,11 +140,15 @@ export class VillanosComponent implements OnInit {
         this.heroe = new Heroe();
         // console.log(objHeroe.name);
         this.heroe.id = objHeroe.id;
-        this.lstFavo.forEach((fav) => {
-          if (fav.idHeroe == this.heroe.id) {
-            this.heroe.favorito = true;
-          }
-        });
+
+        if(this.SearchForm.value.txtSearch == undefined)
+        {
+          this.lstFavo.forEach((fav) => {
+            if (fav.idHeroe == this.heroe.id) {
+              this.heroe.favorito = true;
+            }
+          });
+        }
         this.heroe.images =
           objHeroe.images === undefined
             ? objHeroe.image["url"]
