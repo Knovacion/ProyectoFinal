@@ -66,6 +66,8 @@ export class VillanosComponent implements OnInit {
       }
       this.contadorLinea++;
     }
+    console.log("listita",this.lstHeroeDefinitiva);
+    
   }
 
   splitterFunction(slp: any) {
@@ -101,11 +103,7 @@ export class VillanosComponent implements OnInit {
                 "Alerta"
               );
             }
-            this.heroes.forEach(her => {
-              this.lstHeroeDefinitiva.push(her);
-            });
-
-           // this.lstHeroeDefinitiva = this.heroes;
+           this.lstHeroeDefinitiva = this.heroes;
           } else {
             this.toastr.warning(
               "No se han encontrado resultados para su búsqueda",

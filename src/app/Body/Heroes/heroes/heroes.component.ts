@@ -72,6 +72,8 @@ export class HeroesComponent implements OnInit {
       }
       this.contadorLinea++;
     }
+    console.log("Lst",this.lstHeroeDefinitiva);
+    
   }
 
   splitterFunction(slp: any) {
