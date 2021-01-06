@@ -63,6 +63,7 @@ public txtCorreo:string;
     if (this.uid == undefined) {
       return true;
     } else {
+      this.txtCorreo = localStorage.getItem("email");
       return false;
     }
   }

@@ -140,7 +140,7 @@ export class VillanosComponent implements OnInit {
         // console.log(objHeroe.name);
         this.heroe.id = objHeroe.id;
 
-        if(this.SearchForm.value.txtSearch == undefined)
+        if(this.SearchForm.value.txtSearch == "")
         {
           this.lstFavo.forEach((fav) => {
             if (fav.idHeroe == this.heroe.id) {

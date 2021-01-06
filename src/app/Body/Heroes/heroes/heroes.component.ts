@@ -139,7 +139,7 @@ export class HeroesComponent implements OnInit {
       objHeroe = heroArr[i];
       if (objHeroe.biography["alignment"] == "good") {
 
-        if(this.SearchForm.value.txtSearch == undefined)
+        if(this.SearchForm.value.txtSearch == "" )
         {
           this.lstFavo.forEach((fav) => {
             if (fav.idHeroe == this.heroe.id) {

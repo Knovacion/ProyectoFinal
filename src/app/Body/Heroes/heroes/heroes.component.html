@@ -15,12 +15,12 @@
     <mat-accordion>
       <mat-expansion-panel *ngFor="let pj of this.lstHeroeDefinitiva index as i" hideToggle appMouseDirective>
         <mat-expansion-panel-header #expansionPanel (click)="expansionPanel._toggle()">
-          <mat-panel-title>
+          <mat-panel-title class="col-3" (click)="expansionPanel._toggle()">
             <img class="ClassImagenRadio" src="{{pj.images}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}
             </p>
           </mat-panel-title>
           <mat-panel-description style="text-align:left">
-            <div class="col-md-11" (click)="expansionPanel._toggle()">
+            <div class="col-md-11 alinear" (click)="expansionPanel._toggle()">
               {{pj.biography.fullname}}
             </div>
             <div class="col-1">

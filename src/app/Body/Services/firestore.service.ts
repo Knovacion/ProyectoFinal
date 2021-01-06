@@ -106,6 +106,8 @@ export class FirestoreService {
             this.lstFavoritos.push(this.objFavorito);
           });
         });
+
+        
       return this.lstFavoritos;
     } catch (error) {
       console.log(error);
