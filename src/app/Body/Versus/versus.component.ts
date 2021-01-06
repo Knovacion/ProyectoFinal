@@ -42,19 +42,19 @@ export class VersusComponent implements OnInit {
         }
       });
     });
-    console.log("Heroes", this.allHeroes);
-    console.log("Villanos", this.allVillans);
+   // console.log("Heroes", this.allHeroes);
+  //  console.log("Villanos", this.allVillans);
   }
 
   heroeSelect(event) {
     this.idHeroe = event;
-    console.log(this.idHeroe);
+    //console.log(this.idHeroe);
     this.getHeroe(this.idHeroe);
   }
 
   villanSelect(event) {
     this.idVillan = event;
-    console.log(this.idVillan);
+   // console.log(this.idVillan);
     this.getVillan(this.idVillan);
   }
 
@@ -62,7 +62,7 @@ export class VersusComponent implements OnInit {
     let receptor = [];
     receptor = slp.split(",");
     this.spliter = receptor;
-    console.log("Dimelo kurko", this.spliter);
+   // console.log("Dimelo kurko", this.spliter);
     return this.spliter;
   }
   getHeroe(id: number) {
@@ -73,8 +73,7 @@ export class VersusComponent implements OnInit {
       this.heroe.name = res.name;
 
       this.heroe.biography = res.biography;
-      this.heroe.biography.fullname = res.biography["fullname"];
-
+      this.heroe.biography.fullname = res.biography["full-name"] ===  undefined ? res.biography["fullName"] : res.biography["full-name"];
       this.heroe.powerstats = res.powerstats;
       this.heroe.powerstats.combat = res.powerstats.combat;
       this.heroe.powerstats.durability = res.powerstats.durability;
@@ -91,10 +90,10 @@ export class VersusComponent implements OnInit {
         parseInt(this.heroe.powerstats.speed.toString()) +
         parseInt(this.heroe.powerstats.strength.toString());
 
-      console.log("get heroe");
+     // console.log("get heroe");
       if (this.poderTotalV > 0 && this.poderTotalH > 0) {
-        console.log("Heroes ", this.poderTotalH);
-        console.log("Villano ", this.poderTotalV);
+      //  console.log("Heroes ", this.poderTotalH);
+      //  console.log("Villano ", this.poderTotalV);
         if (this.poderTotalH > this.poderTotalV) {
           this.ganadorHeroe = true;
           this.ganadorVillano = false;
@@ -117,7 +116,7 @@ export class VersusComponent implements OnInit {
 
       this.villan.biography = res.biography;
       this.villan.biography.fullname = res.biography["full-name"];
-
+      this.villan.biography.fullname = res.biography["full-name"] ===  undefined ? res.biography["fullName"] : res.biography["full-name"];
       this.villan.powerstats = res.powerstats;
       this.villan.powerstats.combat = res.powerstats.combat;
       this.villan.powerstats.durability = res.powerstats.durability;
@@ -126,7 +125,7 @@ export class VersusComponent implements OnInit {
       this.villan.powerstats.speed = res.powerstats.speed;
       this.villan.powerstats.strength = res.powerstats.strength;
 
-      console.log(this.villan);
+      //console.log(this.villan);
       this.poderTotalV =
         parseInt(this.villan.powerstats.combat.toString()) +
         parseInt(this.villan.powerstats.durability.toString()) +
@@ -136,8 +135,8 @@ export class VersusComponent implements OnInit {
         parseInt(this.villan.powerstats.strength.toString());
 
       if (this.poderTotalV > 0 && this.poderTotalH > 0) {
-        console.log("Heroes ", this.poderTotalH);
-        console.log("Villano ", this.poderTotalV);
+       // console.log("Heroes ", this.poderTotalH);
+      //  console.log("Villano ", this.poderTotalV);
         if (this.poderTotalH > this.poderTotalV) {
           this.ganadorHeroe = true;
           this.ganadorVillano = false;
@@ -148,6 +147,6 @@ export class VersusComponent implements OnInit {
       }
       this.flag2 = true;
     });
-    console.log("getVillano ");
+    //console.log("getVillano ");
   }
 }

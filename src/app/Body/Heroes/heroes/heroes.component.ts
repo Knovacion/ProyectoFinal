@@ -13,6 +13,7 @@ import { ToastrService } from "ngx-toastr";
 import { FirestoreService } from "../../Services/firestore.service";
 import { Biografia } from "src/app/Models/biografia";
 import { Apariencia } from "src/app/Models/apariencia";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-heroes",
@@ -30,7 +31,7 @@ export class HeroesComponent implements OnInit {
   public SearchForm = new FormGroup({
     txtSearch: new FormControl(""),
   });
-
+  public selectedLanguage = 'es';
   public showGoUpButton: boolean;
   private finishPage = 5;
   private actualPage: number;
@@ -42,10 +43,13 @@ export class HeroesComponent implements OnInit {
     public heroApi: HeroesService,
     private toastr: ToastrService,
     private firestoreService: FirestoreService,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
     this.actualPage = 1;
     this.showGoUpButton = false;
+    translateService.setDefaultLang('es');
+    translateService.use('es');
   }
 
   ngOnInit() {
@@ -72,7 +76,7 @@ export class HeroesComponent implements OnInit {
       }
       this.contadorLinea++;
     }
-    console.log("Lst",this.lstHeroeDefinitiva);
+    //console.log("Lst",this.lstHeroeDefinitiva);
     
   }
 
@@ -93,7 +97,7 @@ export class HeroesComponent implements OnInit {
         lstRespHeroeAux.results = [];
         let lstRespHeroe = lstRespHeroeAux.results;
         this.heroApi.getHeroesByName(hero).subscribe((res) => {
-          console.log(res);
+         // console.log(res);
           if (res.response != "error") {
             this.heroes = [];
             lstRespHeroe = res.results;
@@ -109,7 +113,7 @@ export class HeroesComponent implements OnInit {
               );
             }
             this.lstHeroeDefinitiva = this.heroes;
-            console.log("definitiva", this.lstHeroeDefinitiva)
+            //console.log("definitiva", this.lstHeroeDefinitiva)
           } else {
             this.toastr.warning(
               "No se han encontrado resultados para su búsqueda",
@@ -200,7 +204,7 @@ export class HeroesComponent implements OnInit {
        
       }
     }
-    console.log("hero",this.heroes)
+   // console.log("hero",this.heroes)
     return this.heroes;
   }
   async addFavorito(idHero: number, favorito: boolean, index: number) {

@@ -15,12 +15,12 @@
     <mat-accordion>
       <mat-expansion-panel *ngFor="let pj of this.lstHeroeDefinitiva; index as i" hideToggle appMouseDirective>
         <mat-expansion-panel-header #expansionPanel (click)="expansionPanel._toggle()">
-          <mat-panel-title class=" col-3" (click)="expansionPanel._toggle()">
+          <mat-panel-title (click)="expansionPanel._toggle()">
             <img class="ClassImagenRadio" src="{{pj.images}}" alt="{{pj.name}}">&nbsp;&nbsp;&nbsp;&nbsp;<p>{{pj.name}}
             </p>
           </mat-panel-title>
           <mat-panel-description style="text-align:left">
-            <div class="col-11 alinear" (click)="expansionPanel._toggle()">
+            <div class="col-md-11 alinear" (click)="expansionPanel._toggle()">
               {{pj.biography.fullname}}
             </div>
             <div class="col-1">
@@ -53,11 +53,11 @@
                           </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-list role="list">
-                          <mat-list-item role="listitem">Color Ojos: {{this.heroe.appearance.eyecolor}}</mat-list-item>
-                          <mat-list-item role="listitem">Genero: {{this.heroe.appearance.gender}}</mat-list-item>
+                          <mat-list-item role="listitem">Color Ojos: {{this.heroe.appearance.eyecolor | translate}}</mat-list-item>
+                          <mat-list-item role="listitem">Genero: {{this.heroe.appearance.gender | translate}}</mat-list-item>
                           <mat-list-item role="listitem">Color Cabello: {{this.heroe.appearance.haircolor}}
                           </mat-list-item>
-                          <mat-list-item role="listitem">Estatura: {{this.heroe.appearance.height[1]}}</mat-list-item>
+                          <mat-list-item role="listitem">Estatura: {{this.heroe.appearance.height[1] | translate}}</mat-list-item>
                         </mat-list>
                       </mat-expansion-panel>
                     </mat-accordion>
@@ -88,9 +88,9 @@
                         </mat-accordion>
 
                         <mat-list role="list">
-                          <mat-list-item role="listitem">Alineacion: {{ this.heroe.biography.alignment }}
+                          <mat-list-item role="listitem">Alineacion: {{ this.heroe.biography.alignment | translate}}
                           </mat-list-item>
-                          <mat-list-item role="listitem">Alter-Egos: {{ this.heroe.biography.alteregos }}
+                          <mat-list-item role="listitem">Alter-Egos: {{ this.heroe.biography.alteregos | translate }}
                           </mat-list-item>
                           <mat-list-item role="listitem">Primera Aparicion: {{this.heroe.biography.firstappearance }}
                           </mat-list-item>

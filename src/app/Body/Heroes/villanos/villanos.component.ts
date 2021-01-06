@@ -8,6 +8,7 @@ import { FirestoreService } from "../../Services/firestore.service";
 import { Favoritos } from "../../../Interfaces/favoritos";
 import { Router } from "@angular/router";
 import { Biografia } from "src/app/Models/biografia";
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: "app-villanos",
   templateUrl: "./villanos.component.html",
@@ -33,10 +34,13 @@ export class VillanosComponent implements OnInit {
     private villanoApi: VillanoService,
     private toastr: ToastrService,
     private firestoreService: FirestoreService,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {
     this.actualPage = 1;
     this.showGoUpButton = false;
+    translateService.setDefaultLang('es');
+    translateService.use('es');
   }
 
   public SearchForm = new FormGroup({
@@ -67,7 +71,8 @@ export class VillanosComponent implements OnInit {
       }
       this.contadorLinea++;
     }
-    console.log("listita",this.lstHeroeDefinitiva);
+    
+    //console.log("listita",this.lstHeroeDefinitiva);
     
   }
 
@@ -89,7 +94,7 @@ export class VillanosComponent implements OnInit {
         lstRespHeroeAux.results = [];
         let lstRespHeroe = lstRespHeroeAux.results;
         this.villanoApi.getHeroesByName(villano).subscribe((res) => {
-          console.log(res);
+         // console.log(res);
           if (res.response != "error") {
             this.heroes = [];
             lstRespHeroe = res.results;
@@ -117,7 +122,7 @@ export class VillanosComponent implements OnInit {
   }
 
   searchByName() {
-    console.log("entre");
+    //console.log("entre");
     this.getHeroByName(this.SearchForm.value.txtSearch);
   }
 

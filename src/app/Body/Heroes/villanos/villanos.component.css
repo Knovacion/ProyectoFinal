@@ -89,6 +89,5 @@ section {
 }
 
 .alinear{
-
-  align-items:left;
+  align-items:left !important;
  }

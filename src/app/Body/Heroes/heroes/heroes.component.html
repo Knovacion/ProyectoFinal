@@ -53,10 +53,10 @@
                           </mat-panel-title>
                         </mat-expansion-panel-header>
                         <mat-list role="list">
-                          <mat-list-item role="listitem">Color Ojos: {{this.heroes[i].appearance.eyecolor}}
+                          <mat-list-item role="listitem">Color Ojos: {{this.heroes[i].appearance.eyecolor | translate }}
                           </mat-list-item>
-                          <mat-list-item role="listitem">Genero: {{this.heroes[i].appearance.gender}}</mat-list-item>
-                          <mat-list-item role="listitem">Color Cabello: {{this.heroes[i].appearance.haircolor}}
+                          <mat-list-item role="listitem">Genero: {{this.heroes[i].appearance.gender | translate}}</mat-list-item>
+                          <mat-list-item role="listitem">Color Cabello: {{this.heroes[i].appearance.haircolor | translate}}
                           </mat-list-item>
                           <mat-list-item role="listitem">Estatura: {{this.heroes[i].appearance.height[1]}}</mat-list-item>
                         </mat-list>
@@ -89,9 +89,9 @@
                         </mat-accordion>
    
                         <mat-list role="list">
-                          <mat-list-item role="listitem">Alineacion: {{ this.heroes[i].biography.alignment }}
+                          <mat-list-item role="listitem">Alineacion: {{ this.heroes[i].biography.alignment | translate }}
                           </mat-list-item>
-                          <mat-list-item role="listitem">Alter-Egos: {{ this.heroes[i].biography.alteregos }}
+                          <mat-list-item role="listitem">Alter-Egos: {{ this.heroes[i].biography.alteregos | translate }}
                           </mat-list-item>
                           <mat-list-item role="listitem">Primera Aparicion: {{this.heroes[i].biography.firstappearance }}
                           </mat-list-item>

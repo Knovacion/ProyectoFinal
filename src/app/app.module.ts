@@ -12,7 +12,7 @@ import { RegisterComponent } from "./Body/Register/register/register.component";
 import { LoginComponent } from "./Body/Login/login/login.component";
 import { ClickDirectiveDirective } from "./Directives/click-directive.directive";
 import { HeroesComponent } from "./Body/Heroes/heroes/heroes.component";
-
+import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
 import { VersusComponent } from "./Body/Versus/versus.component";
 
 // FIREBASE
@@ -37,7 +37,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { MatTabsModule } from "@angular/material/tabs";
 
-//Toastgit
+//ToastService
 import { ToastrModule } from "ngx-toastr";
 
 //Directivas
@@ -46,7 +46,15 @@ import { MouseDirectiveDirective } from "./Directives/mouse-directive.directive"
 //Infinite Scroll
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
-import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
+//Translate Pipe
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from "@angular/common/http";
+
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -61,6 +69,7 @@ import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
     MouseDirectiveDirective,
     VersusComponent,
     VillanosComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -84,6 +93,13 @@ import { VillanosComponent } from "./Body/Heroes/villanos/villanos.component";
     InfiniteScrollModule,
     MatButtonModule,
     MatTabsModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: createTranslateLoader,
+          deps: [HttpClient]
+      }
+  })
   ],
   providers: [],
   bootstrap: [AppComponent],
