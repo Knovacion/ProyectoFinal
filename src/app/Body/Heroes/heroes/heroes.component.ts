@@ -158,23 +158,21 @@ export class HeroesComponent implements OnInit {
         this.heroe.name = objHeroe.name;
         this.heroe.appearance = new Apariencia();
         this.heroe.appearance = objHeroe.appearance;
-        this.heroe.appearance.eyecolor = objHeroe.appearance["eye-color"];
+        this.heroe.appearance.eyecolor = objHeroe.appearance["eye-color"] === undefined ? objHeroe.appearance["eyeColor"] : objHeroe.appearance["eye-color"];
         this.heroe.appearance.gender = objHeroe.appearance["gender"];
-        this.heroe.appearance.haircolor = objHeroe.appearance["hair-color"];
+        this.heroe.appearance.haircolor = objHeroe.appearance["hair-color"] === undefined ? objHeroe.appearance["hairColor"] : objHeroe.appearance["hair-color"];
         this.heroe.appearance.height = objHeroe.appearance["height"];
         this.heroe.appearance.race = objHeroe.appearance["race"];
         this.heroe.appearance.weight = objHeroe.appearance["weight"];
         this.heroe.biography = new Biografia();
         this.heroe.biography = objHeroe.biography;
-        this.heroe.biography.fullname = objHeroe.biography["full-name"];
-        this.heroe.biography.aliases = objHeroe.biography["aliases"];
+        this.heroe.biography.fullname = objHeroe.biography["full-name"] ===  undefined ? objHeroe.biography["fullName"] : objHeroe.biography["full-name"];
+        this.heroe.biography.aliases = objHeroe.biography["aliases"] ;
         this.heroe.biography.alignment = objHeroe.biography["alignment"];
 
-        this.heroe.biography.alteregos = objHeroe.biography["alter-egos"];
-        this.heroe.biography.firstappearance =
-          objHeroe.biography["first-appearance"];
-        this.heroe.biography.placeofbirth =
-          objHeroe.biography["place-of-birth"];
+        this.heroe.biography.alteregos = objHeroe.biography["alter-egos"] === undefined ? objHeroe.biography["alterEgos"]: objHeroe.biography["alter-egos"];
+        this.heroe.biography.firstappearance = objHeroe.biography["first-appearance"] === undefined ? objHeroe.biography["firstAppearance"] : objHeroe.biography["first-appearance"];
+        this.heroe.biography.placeofbirth = objHeroe.biography["place-of-birth"] === undefined ? objHeroe.biography["placeOfBirth"] : objHeroe.biography["place-of-birth"];
         this.heroe.biography.publisher = objHeroe.biography["publisher"];
         this.heroe.connections = objHeroe.connections;
 
@@ -202,6 +200,7 @@ export class HeroesComponent implements OnInit {
        
       }
     }
+    console.log("hero",this.heroes)
     return this.heroes;
   }
   async addFavorito(idHero: number, favorito: boolean, index: number) {

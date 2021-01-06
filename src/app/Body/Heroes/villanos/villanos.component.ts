@@ -7,6 +7,7 @@ import { ToastrService } from "ngx-toastr";
 import { FirestoreService } from "../../Services/firestore.service";
 import { Favoritos } from "../../../Interfaces/favoritos";
 import { Router } from "@angular/router";
+import { Biografia } from "src/app/Models/biografia";
 @Component({
   selector: "app-villanos",
   templateUrl: "./villanos.component.html",
@@ -153,22 +154,21 @@ export class VillanosComponent implements OnInit {
             : objHeroe.images["md"];
         this.heroe.name = objHeroe.name;
         this.heroe.appearance = objHeroe.appearance;
-        this.heroe.appearance.eyecolor = objHeroe.appearance["eye-color"];
+        this.heroe.appearance.eyecolor = objHeroe.appearance["eye-color"] === undefined ? objHeroe.appearance["eyeColor"] : objHeroe.appearance["eye-color"];
         this.heroe.appearance.gender = objHeroe.appearance["gender"];
-        this.heroe.appearance.haircolor = objHeroe.appearance["hair-color"];
+        this.heroe.appearance.haircolor = objHeroe.appearance["hair-color"] === undefined ? objHeroe.appearance["hairColor"] : objHeroe.appearance["hair-color"];
         this.heroe.appearance.height = objHeroe.appearance["height"];
         this.heroe.appearance.race = objHeroe.appearance["race"];
         this.heroe.appearance.weight = objHeroe.appearance["weight"];
+        this.heroe.biography = new Biografia();
         this.heroe.biography = objHeroe.biography;
-        this.heroe.biography.fullname = objHeroe.biography["full-name"];
-        this.heroe.biography.aliases = objHeroe.biography["aliases"];
+        this.heroe.biography.fullname = objHeroe.biography["full-name"] ===  undefined ? objHeroe.biography["fullName"] : objHeroe.biography["full-name"];
+        this.heroe.biography.aliases = objHeroe.biography["aliases"] ;
         this.heroe.biography.alignment = objHeroe.biography["alignment"];
 
-        this.heroe.biography.alteregos = objHeroe.biography["alter-egos"];
-        this.heroe.biography.firstappearance =
-          objHeroe.biography["first-appearance"];
-        this.heroe.biography.placeofbirth =
-          objHeroe.biography["place-of-birth"];
+        this.heroe.biography.alteregos = objHeroe.biography["alter-egos"] === undefined ? objHeroe.biography["alterEgos"]: objHeroe.biography["alter-egos"];
+        this.heroe.biography.firstappearance = objHeroe.biography["first-appearance"] === undefined ? objHeroe.biography["firstAppearance"] : objHeroe.biography["first-appearance"];
+        this.heroe.biography.placeofbirth = objHeroe.biography["place-of-birth"] === undefined ? objHeroe.biography["placeOfBirth"] : objHeroe.biography["place-of-birth"];
         this.heroe.biography.publisher = objHeroe.biography["publisher"];
         this.heroe.connections = objHeroe.connections;
         this.heroe.connections.groupAffiliation =
